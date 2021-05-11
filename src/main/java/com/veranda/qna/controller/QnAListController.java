@@ -13,7 +13,8 @@ public class QnAListController extends SuperClass{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		
+		String gotopage = "/qna/qnaList.jsp";
+		super.GotoPage(gotopage);
 	}
 	
 	@Override
