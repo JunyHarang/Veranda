@@ -1645,7 +1645,7 @@
 
 	body {
 		background-color: #FFFFFF;
-		color: rgba(255, 255, 255, 0.65);
+		color:#000000;
 	}
 
 	body, input, select, textarea {
@@ -1838,7 +1838,7 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #ffffff;
+		color: #000000;
 	}
 
 	blockquote {

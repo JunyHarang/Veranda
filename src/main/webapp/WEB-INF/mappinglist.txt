@@ -24,7 +24,7 @@ world=com.veranda.common.controller.WorldController
 #meDelete=com.veranda.member.controller.MemberDeleteController
 #meDetailView=com.veranda.member.controller.MemberDetailViewController
 #meIdcheck=com.veranda.member.controller.MemberIdcheckController
-#meInsert=com.veranda.member.controller.MemberInsertController
+meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
 #meLogin=com.veranda.member.controller.MemberLoginControllerController
 #meLogout=com.veranda.member.controller.MemberLogoutController
@@ -42,7 +42,7 @@ world=com.veranda.common.controller.WorldController
 #prInsert=com.veranda.product.controller.ProductInsertController
 #prList=com.veranda.product.controller.ProductListController
 #prUpdate=com.veranda.product.controller.ProductUpdateController
-#prZim=om.veranda.product.controller.ProductZimController
+#prZim=com.veranda.product.controller.ProductZimController
 ############### ProductComment Section ####################
 #pcoDelete=com.veranda.productcomment.controller.ProductCommentDeleteController
 #pcoInsert=com.veranda.productcomment.controller.ProductCommentInsertController
@@ -55,7 +55,7 @@ world=com.veranda.common.controller.WorldController
 #qnaDelete=com.veranda.qna.controller.QnADeleteController
 #qnaDetailView=com.veranda.qna.controller.QnADetailViewController
 #qnaInsert =com.veranda.qna.controller.QnAInsertController
-#qnaList=com.veranda.qna.controller.QnAListController
+qnaList=com.veranda.qna.controller.QnAListController
 #qnaUpdate=com.veranda.qna.controller.QnAUpdateController
 ############### Q&A Comment Section ####################
 #qcoDelete=com.veranda.qnacomment.controller.QnACommentDeleteController

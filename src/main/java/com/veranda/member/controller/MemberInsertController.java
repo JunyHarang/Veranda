@@ -13,7 +13,8 @@ public class MemberInsertController extends SuperClass{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		
+		String gotopage = "/members/memberInsertForm.jsp";
+		super.GotoPage(gotopage);
 	}
 	
 	@Override
