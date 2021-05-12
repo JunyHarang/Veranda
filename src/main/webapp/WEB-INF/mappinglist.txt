@@ -62,3 +62,4 @@ qnaList=com.veranda.qna.controller.QnAListController
 #qcoInsert=com.veranda.qnacomment.controller.QnACommentInsertController
 #qcotList=com.veranda.qnacomment.controller.QnACommentListController
 #qcoUpdate=com.veranda.qnacomment.controller.QnACommentUpdateController
+myPage=com.veranda.member.controller.MemberPageController
