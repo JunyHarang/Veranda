@@ -24,6 +24,7 @@ world=com.veranda.common.controller.WorldController
 #meDelete=com.veranda.member.controller.MemberDeleteController
 #meDetailView=com.veranda.member.controller.MemberDetailViewController
 meIdcheck=com.veranda.member.controller.MemberIdcheckController
+#meNicknamecheck=com.veranda.member.controller.MemberNickNamecheckController
 meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
 #meLogin=com.veranda.member.controller.MemberLoginControllerController

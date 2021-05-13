@@ -3,11 +3,13 @@ package com.veranda.member.controller;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.veranda.common.controller.NextPage;
 import com.veranda.common.controller.SuperClass;
 import com.veranda.member.dao.MemberDao;
 import com.veranda.member.vo.Member;
@@ -37,7 +39,7 @@ public class MemberInsertController extends SuperClass{
 		if ( this.validate(request) == true) { /* log용 txt 파일 만들기 */
 			
 		     String txt = "회원 가입 유효성 검사가 정상적으로 실행 되었습니다." ;
-	         
+	         	
 		        String fileName = "../../../../../../src/main/webapp/log" ;
 		         
 		        try{
@@ -55,8 +57,42 @@ public class MemberInsertController extends SuperClass{
 		        }catch(Exception e){ /* 파일 읽는데 문제가 생기면 excetion 발생 */
 		            e.printStackTrace();
 		        } // try-catch 끝
+		        
+		        int cnt = -1;
+				
+					cnt = dao.InsertData(bean);
+				
+					new MemberLoginControllerController().doPost(request, response);
 			
-		} // log 생성용 if문 끝
+		} else {
+			
+			String txt = "회원 가입 유효성 검사가 실패하였습니다." ;
+         	
+	        String fileName = "../../../../../../src/main/webapp/log" ;
+	         
+	        try{
+	                         
+	            // BufferedWriter 와 FileWriter를 조합하여 사용 (속도 향상)
+	            BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
+	             
+	            // 파일안에 문자열 쓰기
+	            fw.write(txt);
+	            fw.flush();
+	 
+	            fw.close();  // 객체 닫기
+	             
+	             
+	        }catch(Exception e){ /* 파일 읽는데 문제가 생기면 excetion 발생 */
+	            e.printStackTrace();
+	        } // try-catch 끝
+	        
+	        request.setAttribute("bean", bean);
+	        
+	        super.doPost(request, response);
+	        
+	        	new NextPage().memberInsert();	// 다음 페이지로 넘기기 위한 NextPage Class의 memberInsert 메서드 호출
+			
+		}
 
 	} // doPost 끝
 
