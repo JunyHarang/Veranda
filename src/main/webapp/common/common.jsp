@@ -13,7 +13,9 @@
     <meta name="keywords" content="Cake, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>베란다에서 온 파프리카</title>
+
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
@@ -62,6 +64,16 @@
 	String FormNo = contextPath + mappingName + "?command=";
 %>
 	common.jsp 파일의 내용입니다.
+	<div align="center">
+		<ul>
+			<li>
+				<a href="<%=FormNo%>meLogin">로그인</a>
+				&nbsp;/&nbsp;
+				
+				<a href="<%=FormNo%>meInsert">회원가입</a>
+			</li>
+		</ul>
+	</div>	
 	<header class="header">
         <div class="header__top">
             <div class="container">
