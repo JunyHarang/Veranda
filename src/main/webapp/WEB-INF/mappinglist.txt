@@ -33,10 +33,10 @@ meInsert=com.veranda.member.controller.MemberInsertController
 #meZipcheck=com.veranda.member.controller.MemberZipcheckController
 ############### Notice Section ####################
 #noDelete=com.veranda.notice.controller.NoticeDeleteController
-#noDetailView=com.veranda.notice.controller.NoticeDetailViewController
-#noInsert=com.veranda.notice.controller.NoticeInsertController
-#noList=com.veranda.notice.controller.NoticeListController
-#noUpdate=com.veranda.notice.controller.NoticeUpdateController
+noDetailView=com.veranda.notice.controller.NoticeDetailViewController
+noInsert=com.veranda.notice.controller.NoticeInsertController
+noList=com.veranda.notice.controller.NoticeListController
+noUpdate=com.veranda.notice.controller.NoticeUpdateController
 ############### Product Section ####################
 #prDelete=com.veranda.product.controller.ProductDeleteController
 prDetailView=com.veranda.product.controller.ProductDetailViewController
