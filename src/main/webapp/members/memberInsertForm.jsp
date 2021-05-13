@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 
 <%
 	/* position for grid system */	
@@ -8,8 +11,7 @@
 	int formleft = 3 ;
 	int formright = twelve - formleft ;
 	int rightButton = 2 ;
-	
-%> 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,18 +31,23 @@
 				return false;
 			} // 아이디 길이 확인 if문 끝
 			
-			if (!document.joinform.isCheck.value == 'true') { /* 중복 체크 확인 */
-				alert('중복 체크를 눌러 주세요!');
-				document.joinform.id.focus();
+			var url = '<%=FormNo%>meIdcheck&id='+id;
+			window.open(url,'mywin','height=150,width=300');
+			
+			var id = document.joinform.isCheck.value;
+			
+			if (isCheck == 'false') { /* 중복 체크 확인 */
+				alert('중복 확인 눌러 주세요!');
 				return false;
 			} // 중복 체크 if문 끝
 			
 			alert('사용 가능 합니다!');
 			
-			var url = '<%=FormNo%>meIdcheck&id='+id;
-			window.open(url,'mywin','height=150,width=300');
-			
 		} // 아이디 유효성 검사 끝
+		
+		function isCheckFalse() { /* 아이디 유효성 검사 실패 시 */
+			document.joinform.isCheck.valuse = false;
+		}
 		
 		function pwdCheck() { /* 패스워드 유효성 검사 */
 			
@@ -117,16 +124,17 @@
 				return false;
 			} // 닉네임 길이 확인 if문 끝
 			
+			var url = '<%=FormNo%>memNickcheck&nickname='+nickname;
+			window.open(url,'mywin','height=150,width=300');
+			
 			if (document.joinform.isCheck.value == 'false') { /* 중복 체크 확인 */
-				alert('중복 체크를 눌러 주세요!');
+				alert('중복 확인을 눌러 주세요!');
 				document.joinform.nickname.focus();
 				return false;
 			} // 중복 체크 if문 끝
 			
 			alert('사용 가능 합니다!');
 			
-			var url = '<%=FormNo%>meNicknamecheck&nickname='+nickname;
-			window.open(url,'mywin','height=150,width=300');
 		}
 		
 		function sexcheck() {
@@ -150,6 +158,7 @@
 				document.getElementById('emailsame').style.color='blue';
 				
 				return true;
+				
 			} else {
 				document.getElementById('emailsame').innerHTML='E-mail 형식에 맞지 않습니다.';
 				
@@ -157,10 +166,14 @@
 				
 				return false;
 			}
-			
-		
 					
 				} // if-else문 끝
+				
+				function service() {
+					alert('죄송합니다. 서비스 준비 중 입니다.');
+					return false;
+				}
+				
 	</script>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -239,10 +252,29 @@
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = 'block';
     }
+    
+    
 </script>
+
 </head>
 <body>
-
+<%--
+ <%
+    String clientId = "6Io2ZVIAyg70911nLrPRJ";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://10.77.77.6/veranda/veranda?command=main", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
+ 
+  <a href="<%=apiURL%>">
+  <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+ --%>
+ 
 <!-- CSS Form 받아오기 -->
 <link rel="stylesheet" href="css/joinForm.css">
 
@@ -256,16 +288,22 @@
 	<p class="text-center">베란다에서 온 파프리카에 오신 것을 환영 합니다!</p>
 	
 	<p>
-		<a href="" class="btn btn-block btn-naver"> <i class="fab fa-naver"></i>   네이버 인증하기</a>
-		<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   페이스북 인증하기</a>
-		<a href="" class="btn btn-block btn-google"> <i class="fab fa-google"></i>   구글 인증하기</a>
+		<a href="" class="btn btn-block btn-naver" onclick="service();"> 
+			<i class="fab fa-naver"></i>   네이버 인증하기</a>
+		
+		<a href="" class="btn btn-block btn-facebook" onclick="service();"> 
+			<i class="fab fa-facebook-f"></i>   페이스북 인증하기</a>
+		
+		<a href="" class="btn btn-block btn-google" onclick="service();"> 
+			<i class="fab fa-google">
+		</i>   구글 인증하기</a>
 	</p>
 	
 	<p class="divider-text">
         <span class="bg-light">OR</span>
     </p>
     
-	<form name="joinform">
+	<form name="joinform" action="<%=FormYes%>" method="post">
 	
 	<%-- 아이디 입력란 --%>
 	<div class="form-group input-group">
@@ -278,7 +316,7 @@
 		 
 		 </div>
         
-        <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text">
+        <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text" pattern="[A-Za-z0-9]+">
         
         <input type="hidden" name="command" value="meInsert">
         <input type="hidden" name="isCheck" value="false">
@@ -334,7 +372,7 @@
         <input name="nickname" class="form-control" placeholder="닉네임을 입력 해 주세요!" type="text">
         
         <input type="hidden" name="command" value="meInsert">
-        <input type="hidden" name="isCheck" value="false">
+        <input type="hidden" name="nickisCheck" value="false">
         
     	<input type="button" name="${bean.nickname}" value="중복 확인" class="btn btn-nickcheck" onclick="nickCheck();">
     
@@ -383,8 +421,8 @@
 		 
 		 </div>
         
-        <input name="sex" class="form-control" type="radio" >남자
-        <input name="sex" class="form-control" type="radio" >여자
+        <input name="sex" class="form-control" type="radio">남자
+        <input name="sex" class="form-control" type="radio">여자
     </div> 
     
     <%-- e-mail 입력란 --%>
@@ -416,7 +454,7 @@
 		 
 		 </div>
         
-        <input type="text" class="form-control" id="sample3_postcode" placeholder="우편번호">
+        <input type="text" class="form-control" id="sample3_postcode" placeholder="우편번호" readonly="readonly">
         
         <input type="button" name="postcode" class="btn btn-postcode" onclick="sample3_execDaumPostcode()" value="우편번호 찾기">
         
@@ -438,7 +476,7 @@
 			 
 			 </div>
 			 
-		 	<input type="text" class="form-control" id="sample3_address" placeholder="주소"><br>
+		 	<input type="text" class="form-control" id="sample3_address" placeholder="주소" readonly="readonly"><br>
 		 </div>
 		 
 		 <div class="form-group input-group">
@@ -451,7 +489,7 @@
 			 
 			 </div>
 			 
-			 <input type="text" class="form-control" id="sample3_extraAddress" placeholder="동명">
+			 <input type="text" class="form-control" id="sample3_extraAddress" placeholder="동명" readonly="readonly">
 
 		 	
 		 </div>
@@ -467,7 +505,7 @@
 			 </div>
 		 	
 		 				 
-			 <input type="text" class="form-control" id="sample3_detailAddress" placeholder="상세주소">
+			 <input type="text" class="form-control" id="sample3_detailAddress" placeholder="상세주소를 입력 해 주세요!">
 		 	
 		 </div>
     
@@ -478,7 +516,10 @@
     <%-- 연락처 입력란 --%>
     <div class="form-group input-group">
     	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+		    
+		    <span class="input-group-text"> 
+		    	<i class="fa fa-phone"></i> 
+		    </span>
 		</div>
 		<select class="custom-select" style="max-width: 120px;">
 		    <option selected="-">-- 지역 번호를 선택하여 주세요! --</option>
@@ -507,12 +548,17 @@
     	<input name="phone1" class="form-control" min="1111" max="9999" type="number">
     </div> 
     
-    <!-- form-group// -->                                      
+    <%-- 회원가입 버튼 --%>                                      
     <div class="form-group">
         <button type="submit" class="btn btn-warning btn-block"> 회원가입  </button>
-    </div> <!-- form-group// -->      
-    <p class="text-center">이미 가입하셨습니까? <a href="">로그인</a> </p>                                                                 
+    </div> 
+    
+    <%-- 로그인으로 돌아가기 --%>      
+    <p class="text-center">이미 가입하셨습니까? 
+    	<a href="http://localhost/veranda/veranda?command=meLogin">로그인</a>
+    </p>                                                                 
 </form>
+
 </article>
 </div> <!-- card.// -->
 

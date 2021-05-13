@@ -13,8 +13,7 @@ public class ProductListController extends SuperClass{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		String gotopage = "/product/prList.jsp";
-		super.GotoPage(gotopage);
+		
 	}
 	
 	@Override

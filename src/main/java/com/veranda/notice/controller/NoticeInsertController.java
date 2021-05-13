@@ -1,7 +1,9 @@
 package com.veranda.notice.controller;
 
 import java.io.IOException;
+import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +28,7 @@ public class NoticeInsertController extends SuperClass{
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
+	
 		bean = new Notice();
 		
 		bean.setContent(request.getParameter("content"));

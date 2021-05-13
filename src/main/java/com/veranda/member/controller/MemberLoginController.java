@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.veranda.common.controller.SuperClass;
 
-public class MemberLoginControllerController extends SuperClass{
+public class MemberLoginController extends SuperClass{
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

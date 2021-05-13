@@ -3,8 +3,10 @@ package com.veranda.member.controller;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,7 @@ public class MemberInsertController extends SuperClass{
 		
 		String gotopage = "/members/memberInsertForm.jsp";
 		super.GotoPage(gotopage);
+		
 	}
 	
 	@Override
@@ -31,8 +34,21 @@ public class MemberInsertController extends SuperClass{
 		
 		bean = new Member();
 		
-		bean.setId(request.getParameter("id"));
-		bean.setPwd(request.getParameter("pwd"));
+		bean.setUser_id(request.getParameter("user_id"));
+		bean.setUser_pwd(request.getParameter("user_pwd"));
+		bean.setUser_name(request.getParameter("user_name"));
+		bean.setUser_nickname(request.getParameter("user_nickname"));
+		bean.setUser_email(request.getParameter("user_email"));
+		bean.setUser_phone(request.getParameter("user_phone"));
+		bean.setUser_address(request.getParameter("user_address"));
+		bean.setUser_birth(request.getParameter("user_birth"));
+		bean.setUser_gender(request.getParameter("user_gender"));
+		bean.setUser_remark(request.getParameter("user_remark"));
+		bean.setUser_postcode(Integer.parseInt(request.getParameter("pastcode")));
+		bean.setUser_address(request.getParameter("address"));
+		bean.setUser_address1(request.getParameter("address1"));
+		bean.setUser_address_mark(request.getParameter("address_mark"));
+		
 		
 		MemberDao dao = new MemberDao();
 		
@@ -62,7 +78,7 @@ public class MemberInsertController extends SuperClass{
 				
 					cnt = dao.InsertData(bean);
 				
-					new MemberLoginControllerController().doPost(request, response);
+					new MemberLoginController().doPost(request, response);
 			
 		} else {
 			
@@ -90,10 +106,30 @@ public class MemberInsertController extends SuperClass{
 	        
 	        super.doPost(request, response);
 	        
-	        	new NextPage().memberInsert();	// 다음 페이지로 넘기기 위한 NextPage Class의 memberInsert 메서드 호출
+	       String gotopage = "/members/memberInsertForm.jsp";
+			super.GotoPage(gotopage);
 			
 		}
 
 	} // doPost 끝
 
 } // class 끝
+
+
+//String token = 
+//
+//if (access_token != null) { /* access token 받아왔는지 확인 */
+//		try {
+//			String apiurl = "https://openapi.naver.com/v1/nid/me";
+//			
+//			URL url = new URL(apiurl);
+//			
+//			HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
+//			
+//			con.setRequestMethod("GET");
+//			con.setRequestProperty("Authorization", header);
+//			
+//			int responseCode = con.getResponseCode();
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}

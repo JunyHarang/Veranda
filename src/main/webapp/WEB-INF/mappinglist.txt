@@ -4,11 +4,11 @@ world=com.veranda.common.controller.WorldController
 ##################### Community Section #####################
 #coDetailView=com.veranda.community.controller.CommuityDetailViewController
 #coInsert=com.veranda.community.controller.CommuityInsertController
-#coList=com.veranda.community.controller.CommuityListController
+coList=com.veranda.community.controller.CommuityListController
 #coUpdate=com.veranda.community.controller.CommuityUpdateController
 #coDelete=com.veranda.community.controller.CommuityDeleteController
 #coEmotion=com.veranda.community.controller.CommuityEmotionController
-############### Communitycomment Section ####################
+############### CommunityComment Section ####################
 #ccoDelete=com.veranda.communitycomment.controller.CommunityCommentDeleteController.CommunityCommentDeleteController
 #ccoInsert=com.veranda.communitycomment.controller.CommunityCommentInsertController.CommunityCommentInsertController
 #ccoList=com.veranda.communitycomment.controller.CommunityCommentListController.CommunityCommentListController
@@ -24,6 +24,7 @@ world=com.veranda.common.controller.WorldController
 #meDelete=com.veranda.member.controller.MemberDeleteController
 #meDetailView=com.veranda.member.controller.MemberDetailViewController
 meIdcheck=com.veranda.member.controller.MemberIdcheckController
+memNickcheck=com.veranda.member.controller.MemberNickcheckController
 #meNicknamecheck=com.veranda.member.controller.MemberNickNamecheckController
 meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
