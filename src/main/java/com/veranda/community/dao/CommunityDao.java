@@ -36,4 +36,9 @@ public class CommunityDao extends SuperDao{
 	public int UpdateEmotion(int no) {
 		return 0;
 	}
+
+	public int SelectTotalCount(String mode, String keyword) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
