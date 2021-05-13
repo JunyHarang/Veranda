@@ -39,9 +39,9 @@ meInsert=com.veranda.member.controller.MemberInsertController
 #noUpdate=com.veranda.notice.controller.NoticeUpdateController
 ############### Product Section ####################
 #prDelete=com.veranda.product.controller.ProductDeleteController
-#prDetailView=com.veranda.product.controller.ProductDetailViewController
-#prInsert=com.veranda.product.controller.ProductInsertController
-#prList=com.veranda.product.controller.ProductListController
+prDetailView=com.veranda.product.controller.ProductDetailViewController
+prInsert=com.veranda.product.controller.ProductInsertController
+prList=com.veranda.product.controller.ProductListController
 #prUpdate=com.veranda.product.controller.ProductUpdateController
 #prZim=com.veranda.product.controller.ProductZimController
 ############### ProductComment Section ####################
@@ -63,3 +63,4 @@ qnaList=com.veranda.qna.controller.QnAListController
 #qcoInsert=com.veranda.qnacomment.controller.QnACommentInsertController
 #qcotList=com.veranda.qnacomment.controller.QnACommentListController
 #qcoUpdate=com.veranda.qnacomment.controller.QnACommentUpdateController
+myPage=com.veranda.member.controller.MemberPageController
