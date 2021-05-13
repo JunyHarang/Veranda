@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SuperDao {
-	   protected Connection conn = null;
-	   private String driver = "oracle.jdbc.driver.OracleDriver";
-	   private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	   private String id = "dream";
-	   private String password = "oracle";
+	protected Connection conn = null;
+ 	private String driver = "org.mariadb.jdbc.Driver";
+ 	private String url = "jdbc:mariadb://58.232.163.150:31701/veranda";
+ 	private String id = "dreamadm";
+ 	private String password = "imsi00.!";
 	
 	protected Connection getConnection() {		
 		try {			 
