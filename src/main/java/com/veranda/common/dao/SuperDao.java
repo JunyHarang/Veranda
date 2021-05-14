@@ -9,7 +9,7 @@ public class SuperDao {
  	private String driver = "oracle.jdbc.driver.OracleDriver";
  	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
  	private String id = "dreamadm";
- 	private String password = "imsi00.!";
+ 	private String password = "oracle";
 	
 	protected Connection getConnection() {		
 		try {			 
