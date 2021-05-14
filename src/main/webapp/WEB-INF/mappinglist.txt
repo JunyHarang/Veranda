@@ -56,7 +56,7 @@ prList=com.veranda.product.controller.ProductListController
 ############### Q&A Section ####################
 #qnaDelete=com.veranda.qna.controller.QnADeleteController
 #qnaDetailView=com.veranda.qna.controller.QnADetailViewController
-#qnaInsert =com.veranda.qna.controller.QnAInsertController
+qnaInsert=com.veranda.qna.controller.QnAInsertController
 qnaList=com.veranda.qna.controller.QnAListController
 #qnaUpdate=com.veranda.qna.controller.QnAUpdateController
 ############### Q&A Comment Section ####################
