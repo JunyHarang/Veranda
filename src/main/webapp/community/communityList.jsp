@@ -133,15 +133,16 @@
 						</tr>
 						<tr>
 							<td align="center" colspan="4">
-								<form action="" class="form-inline" role="form" name="myform" method="get"> 
+								<form action="#" class="form-inline" role="form" name="searchform" method="get"> 
 									<div class="form-group">
 										<select id="mode" name="mode" class="form-control">
 											<option value="all" selected="selected">선택하세요.
-											<option >제목
-											<option >제목+내용
-											<option >작성자
-											<option >불편사항
-											<option >이용문의
+											<option value="subject">제목
+											<option value="subCon">제목+내용
+											<option value="writer">작성자
+											<option value="free">자유게시판
+											<option value="info">정보공유
+											<option value="product">베란다뽐내기
 										</select>
 									</div>
 									&nbsp;&nbsp;

@@ -11,8 +11,8 @@
 	
 	<script type="text/javascript">
 	
-		function meClose(isCheck) {
-			opener.myform.isCheck.value = isCheck;
+		function meClose(overlapid) {
+			opener.joinform.overlapid.value = overlapid;
 			self.close();
 		}
 		
@@ -26,7 +26,7 @@
 	
 		<p align="center">${message}</p>
 			<div class="row" align="center">
-				<button class="btn btn-primary" type="button" onclick="meClose('${isCheck}');">
+				<button class="btn btn-primary" type="button" onclick="meClose('${overlapid}');">
 					<p>닫기</p>
 				</button>
 		</div>
