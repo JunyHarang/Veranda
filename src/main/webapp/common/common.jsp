@@ -63,17 +63,6 @@
 	String FormYes = contextPath + mappingName;
 	String FormNo = contextPath + mappingName + "?command=";
 %>
-	common.jsp 파일의 내용입니다.
-	<div align="center">
-		<ul>
-			<li>
-				<a href="<%=FormNo%>meLogin">로그인</a>
-				&nbsp;/&nbsp;
-				
-				<a href="<%=FormNo%>meInsert">회원가입</a>
-			</li>
-		</ul>
-	</div>	
 	<header class="header">
         <div class="header__top">
             <div class="container">
@@ -82,12 +71,6 @@
                         <div class="header__top__inner">
                             <div class="header__logo">
                                 <a href="<%=FormNo%>main"><img src="img/logo.png" alt=""></a>
-                            </div>
-                            <div class="header__top__right">
-                                <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                                </div>
                             </div>
                             <div class="header__top__left">
                                 <div class="header__top__right__links">
