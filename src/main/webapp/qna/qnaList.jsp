@@ -22,7 +22,7 @@
 			location.href='<%=FormNo%>qnaList';
 		}
 		function writeForm(){
-			location.href='<%=FormNo%>prInsert';
+			location.href='<%=FormNo%>qnaInsert';
 		}
 		
 		$(document).ready(function(){
@@ -69,20 +69,6 @@
 			}
 		}
 	</script>
-<style type="text/css">
-	.checkout__input_2 input{
-		height: 350px;
-		width: 100%;
-		border: 1px solid #e1e1e1;
-		font-size: 14px;
-		color: #666666;
-		padding-left: 20px;
-		margin-bottom: 20px;
-	}
-	.checkout__input_2 p span {
- 		 color: #f08632;
-	}
-</style>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
 </head>
@@ -103,85 +89,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="bean" items="${requestScope.lists}">	
-						<tr class="table-active">
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<tr>
 							<th scope="row">${bean.no}</th>
 							<td>${bean.category}</td>
-							<td colspan="2">${bean.title}</td>
+							<td colspan="2"><a href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
 							<td>${bean.date}</td>
 						</tr>
 					</c:forEach>
-					<tr class="table-active">
-						<th scope="row">Active</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<th scope="row">Default</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-primary">
-						<th scope="row">Primary</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-secondary">
-						<th scope="row">Secondary</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-success">
-						<th scope="row">Success</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-danger">
-						<th scope="row">Danger</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-warning">
-						<th scope="row">Warning</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-info">
-						<th scope="row">Info</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-light">
-						<th scope="row">Light</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr class="table-dark">
-						<th scope="row">Dark</th>
-						<td>Column content</td>
-						<td colspan="2">Column content</td>
-						<td>Column content</td>
-					</tr>
 					<tr>
 						<td align="center" colspan="4">
 							<form action="" class="form-inline" role="form" name="myform" method="get"> 
 								<div class="form-group">
 									<select id="mode" name="mode" class="form-control">
 										<option value="all" selected="selected">선택하세요.
-										<option >제목
-										<option >제목+내용
-										<option >작성자
-										<option >불편사항
-										<option >이용문의
+										<option>제목
+										<option>제목+내용
+										<option>작성자
+										<option>불편사항
+										<option>이용문의
 									</select>
 								</div>
 								&nbsp;&nbsp;
@@ -202,6 +128,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<div align="center">
+				<footer>${pageInfo.pagingHtml}</footer>
+			</div>
 		</div>
 	</div>
 	<br><br><br><br>
@@ -218,81 +147,6 @@
 	<br>
 	<!-- 게시판 리스트 끝 -->
 
-
-
-
-
-	<!-- 게시판 입력 폼 시작 -->
-
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="breadcrumb__text">
-                        <h2>Q&A</h2>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="breadcrumb__links">
-                        <a href="<%=FormNo%>main">Home</a>
-                        <span>Q&A</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
-
-    <!-- Checkout Section Begin -->
-    <section class="checkout spad">
-        <div class="container">
-            <div class="checkout__form">
-                <form name="insertform" action="<%=FormYes%>" method="post">
-                	<input type="hidden" name="command" value="qnaInsert">
-                	<input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6">
-                            <h6 class="coupon__code">
-                            	<span class="icon_tag_alt">
-                            	</span> Q&A 게시판 글 작성
-                        	</h6>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="checkout__input">
-                                        <p>제목<span>*</span></p>
-                                        <input type="text" name="title" id="title">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-									<div class="checkout__input">
-                                        <p>카테고리<span>*</span></p>
-                                        <div>
-                                			<select id="category" name="category" class="form">
-                                				<option value="-" selected="selected">선택하세요
-                                				<option value="">불편사항
-                                				<option value="">이용문의
-                                			</select>
-                                		</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="checkout__input_2">
-                                <p>글 내용<span>*</span></p>
-                                <input type="text" name="content" id="content">
-                            </div>
-                            <button type="submit" class="site-btn" onclick="return checkForm();">
-                            	등록
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- Checkout Section End -->
-
-	<!-- 게시판 입력 폼 끝 -->
 </body>
 </html>
 <jsp:include page="/common/footer.jsp"></jsp:include>
