@@ -31,22 +31,37 @@
 				return false;
 			} // 아이디 길이 확인 if문 끝
 			
-			var url = '<%=FormNo%>meIdcheck&id='+id;
-			window.open(url,'mywin','height=150,width=300');
+			var id = document.joinform.id.value;
+			var isCheck = document.joinform.overlapid;
 			
-			var id = document.joinform.isCheck.value;
-			
-			if (isCheck == 'false') { /* 중복 체크 확인 */
+			if (!isCheck == 'ture') { /* 중복 체크 확인 */
 				alert('중복 확인 눌러 주세요!');
+				document.joinform.id.focus();
 				return false;
 			} // 중복 체크 if문 끝
 			
-			alert('사용 가능 합니다!');
+			var url = '<%=FormNo%>meIdcheck&id='+id;
+			window.open(url,'mywin','height=150,width=300');
 			
 		} // 아이디 유효성 검사 끝
 		
 		function isCheckFalse() { /* 아이디 유효성 검사 실패 시 */
-			document.joinform.isCheck.valuse = false;
+			document.joinform.overlapid.valuse = false;
+		}
+		
+		function overlapid() {
+			
+			var id = document.joinform.id.value;
+			var isCheck = document.joinform.overlapid;
+			
+			if (!isCheck == 'ture') { /* 중복 체크 확인 */
+				alert('중복 확인 눌러 주세요!');
+				document.joinform.overlapid.focus();
+				return false;
+			} // 중복 체크 if문 끝
+			
+			var url = '<%=FormNo%>meIdcheck&id='+id;
+			window.open(url,'mywin','height=150,width=300');
 		}
 		
 		function pwdCheck() { /* 패스워드 유효성 검사 */
@@ -57,11 +72,10 @@
 			
 			var checkpwd = document.joinform.checkpwd.value;
 			
-			function CheckPassword(id, pwd){ /* 영(대,소)문자 + 숫자 조합 시 길이 검사 */
 			    if(!/^[a-zA-Z0-9]{10,20}$/.test(pwd)){
 			        alert("비밀번호는 숫자와 영문자 조합으로 10~20자리를 사용해야 합니다.");
+			        document.joinform.pwd.focus();
 			        return false;
-			    } // if문 끝
 			    
 			    var chk_num = pwd.search(/[0-9]/g);		// 숫자 비교 시 사용될 변수
 			   
@@ -69,28 +83,30 @@
 			    
 			    if(chk_num < 0 || chk_eng < 0){ /* 영소문자 + 숫자 조합 여부 검사 */
 			        alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+			        document.joinform.pwd.focus();
 			        return false;
 			    } // if문 끝
 			    
 			    if(/(\w)\1\1\1/.test(pwd)){
 			        alert("비밀번호에 같은 문자를 4번 이상 사용하실 수 없습니다.");
+			        document.joinform.pwd.focus();
 			        return false;
 			    }
 			    if(pwd.search(id) > -1){
 			        alert("ID가 포함된 비밀번호는 사용하실 수 없습니다.");
+			        document.joinform.pwd.focus();
 			        return false;
 			    }
 			    return true;
-			}
 			
+			}
 			
 			if (pwd.length < 10 || pwd.length > 20) { /* 패스워드 길이 검사 */
 				
 				window.alert('비밀번호는 최소 10자리 20자리 이하여야 합니다!');
+			
+				document.joinform.pwd.focus();
 	
-				document.getElementById('pwd').value=document.getElementById('Checkpwd').value='';
-				
-				document.getElementById('same').innerHTML='';
 				
 				return false;
 			} // 패스워드 길이 유효성 검사 if문 끝
@@ -99,12 +115,12 @@
 				
 				if (document.getElementById('pwd').value==document.getElementById('checkpwd').value) { /* 패스워드가 같은지 검사 */
 				
-				document.getElementById('same').innerHTML='Check it!';
+				document.getElementById('same').innerHTML='정상입니다!';
 				
 				document.getElementById('same').style.color='blue';
 				
 				} else {
-					document.getElementById('same').innerHTML='Retry please!';
+					document.getElementById('same').innerHTML='다시 한번 확인 부탁 드립니다!';
 					
 					document.getElementById('same').style.color='red';
 					
@@ -113,7 +129,19 @@
 				
 			} // 패스워드 공백 검사 if문 끝
 			
+			var pwd = document.joinform.pwd.value;
+			var overlappwd = document.joinform.overlappwd;
+			
 		} // 패스워드 유효성 검사 끝
+		
+		function isCheckFalse() { /* 비밀번호 유효성 검사 실패 시 */
+			document.joinform.overlappwd.valuse = false;
+		}
+		
+		function overlappwd() {
+			
+			
+		}
 		
 		function nickCheck() {
 			var nickname = document.joinform.nickname.value;
@@ -124,16 +152,14 @@
 				return false;
 			} // 닉네임 길이 확인 if문 끝
 			
-			var url = '<%=FormNo%>memNickcheck&nickname='+nickname;
+			var url = '<%=FormNo%>meNickcheck&nickname='+nickname;
 			window.open(url,'mywin','height=150,width=300');
 			
-			if (document.joinform.isCheck.value == 'false') { /* 중복 체크 확인 */
+			if (document.joinform.nickname.value == 'false') { /* 중복 체크 확인 */
 				alert('중복 확인을 눌러 주세요!');
 				document.joinform.nickname.focus();
 				return false;
 			} // 중복 체크 if문 끝
-			
-			alert('사용 가능 합니다!');
 			
 		}
 		
@@ -149,25 +175,16 @@
 		
 		function emailcheck() {
 			
+			var email = document.joinform.email.value;
+			var isCheck = document.joinform.emailcheck;
 			var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			
-			if(!regex.test() === false) {
-				
-				document.getElementById('emailsame').innerHTML='다음 단계를 진행 해 주세요!';
-				
-				document.getElementById('emailsame').style.color='blue';
-				
-				return true;
-				
-			} else {
-				document.getElementById('emailsame').innerHTML='E-mail 형식에 맞지 않습니다.';
-				
-				document.getElementById('emailsame').style.color='red';
-				
+			if (email != regex) { /* 이메일 형식 검사 */
+				alert('email 형식에 맞게 입력 해 주세요!!');
+				document.joinform.email.focus();
 				return false;
-			}
-					
-				} // if-else문 끝
+			} // 중복 체크 if문 끝
+		
 				
 				function service() {
 					alert('죄송합니다. 서비스 준비 중 입니다.');
@@ -187,9 +204,15 @@
         element_wrap.style.display = 'none';
     }
 
-    function sample3_execDaumPostcode() {
-        // 현재 scroll 위치를 저장해놓는다.
-        var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+    // 우편번호 찾기 화면을 넣을 element
+    var element_layer = document.getElementById('layer');
+
+    function closeDaumPostcode() {
+        // iframe을 넣은 element를 안보이게 한다.
+        element_layer.style.display = 'none';
+    }
+
+    function sample2_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
                 // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -222,35 +245,49 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample3_extraAddress").value = extraAddr;
+                    document.getElementById("sample2_extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample3_extraAddress").value = '';
+                    document.getElementById("sample2_extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample3_postcode').value = data.zonecode;
-                document.getElementById("sample3_address").value = addr;
+                document.getElementById('sample2_postcode').value = data.zonecode;
+                document.getElementById("sample2_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample3_detailAddress").focus();
+                document.getElementById("sample2_detailAddress").focus();
 
                 // iframe을 넣은 element를 안보이게 한다.
                 // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-                element_wrap.style.display = 'none';
-
-                // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-                document.body.scrollTop = currentScroll;
-            },
-            // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-            onresize : function(size) {
-                element_wrap.style.height = size.height+'px';
+                element_layer.style.display = 'none';
             },
             width : '100%',
-            height : '100%'
-        }).embed(element_wrap);
+            height : '100%',
+            maxSuggestItems : 5
+        }).embed(element_layer);
 
         // iframe을 넣은 element를 보이게 한다.
-        element_wrap.style.display = 'block';
+        element_layer.style.display = 'block';
+
+        // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+        initLayerPosition();
+    }
+
+    // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+    // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+    // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+    function initLayerPosition(){
+        var width = 300; //우편번호서비스가 들어갈 element의 width
+        var height = 400; //우편번호서비스가 들어갈 element의 height
+        var borderWidth = 5; //샘플에서 사용하는 border의 두께
+
+        // 위에서 선언한 값들을 실제 element에 넣는다.
+        element_layer.style.width = width + 'px';
+        element_layer.style.height = height + 'px';
+        element_layer.style.border = borderWidth + 'px solid';
+        // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
     }
     
     
@@ -319,9 +356,9 @@
         <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text" pattern="[A-Za-z0-9]+">
         
         <input type="hidden" name="command" value="meInsert">
-        <input type="hidden" name="isCheck" value="false">
+        <input type="hidden" name="overlapid" value="false">
         
-    	<input type="button" name="${bean.id}" value="중복 확인" class="btn btn-idcheck" onclick="idCheck();">
+    	<input type="button" value="중복 확인" class="btn btn-idcheck" onclick="idCheck();">
     
     </div> 
     
@@ -354,8 +391,6 @@
         
         <input id="checkpwd" name="checkpwd" class="form-control" placeholder="비밀번호를 한번 더 입력 해 주세요!" type="password" onchange="pwdCheck();">
         
-        <input type="button" name="${bean.pwd}" value="비밀번호 확인" class="btn btn-checkpwd" onclick="pwdCheck();">
-    
     </div>
     
     <%-- 닉네임 입력란 --%>
@@ -374,7 +409,7 @@
         <input type="hidden" name="command" value="meInsert">
         <input type="hidden" name="nickisCheck" value="false">
         
-    	<input type="button" name="${bean.nickname}" value="중복 확인" class="btn btn-nickcheck" onclick="nickCheck();">
+    	<input type="button" value="중복 확인" class="btn btn-nickcheck" onclick="nickCheck();">
     
     </div> 
     
@@ -436,7 +471,7 @@
 		 
 		 </div>
         
-        <input id="mail" name="mail" class="form-control" type="email" placeholder="이메일 주소를 입력 해 주세요!" onclick="emailcheck();">
+        <input id="email" name="email" class="form-control" type="email" placeholder="이메일 주소를 입력 해 주세요!" onclick="emailcheck();">
        
         &nbsp;&nbsp;
         
@@ -454,64 +489,13 @@
 		 
 		 </div>
         
-        <input type="text" class="form-control" id="sample3_postcode" placeholder="우편번호" readonly="readonly">
-        
-        <input type="button" name="postcode" class="btn btn-postcode" onclick="sample3_execDaumPostcode()" value="우편번호 찾기">
-        
-        <br>
-        
-        <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-			<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-		</div>
-		
-		</div> 
-		
-		<div class="form-group input-group">
-	
-			<div class="input-group-prepend">
-			
-			    <span class="input-group-text"> 
-			    	<i class="fa fa-map"></i> 
-			    </span>
-			 
-			 </div>
-			 
-		 	<input type="text" class="form-control" id="sample3_address" placeholder="주소" readonly="readonly"><br>
-		 </div>
-		 
-		 <div class="form-group input-group">
-	
-			<div class="input-group-prepend">
-			
-			    <span class="input-group-text"> 
-			    	<i class="fa fa-map"></i> 
-			    </span>
-			 
-			 </div>
-			 
-			 <input type="text" class="form-control" id="sample3_extraAddress" placeholder="동명" readonly="readonly">
-
+        <input type="text" id="sample2_postcode" placeholder="우편번호" readonly="readonly">
+			<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" id="sample2_address" placeholder="주소" readonly="readonly"><br>
+		<input type="text" id="sample2_detailAddress" placeholder="상세주소">
+		<input type="text" id="sample2_extraAddress" placeholder="참고항목" readonly="readonly">
 		 	
 		 </div>
-		 
-		 <div class="form-group input-group">
-	
-			<div class="input-group-prepend">
-			
-			    <span class="input-group-text"> 
-			    	<i class="fa fa-bed"></i> 
-			    </span>
-			 
-			 </div>
-		 	
-		 				 
-			 <input type="text" class="form-control" id="sample3_detailAddress" placeholder="상세주소를 입력 해 주세요!">
-		 	
-		 </div>
-    
-    	<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-			<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-		</div>
     
     <%-- 연락처 입력란 --%>
     <div class="form-group input-group">

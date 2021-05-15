@@ -34,86 +34,57 @@ public class MemberInsertController extends SuperClass{
 		
 		bean = new Member();
 		
-		bean.setUser_id(request.getParameter("user_id"));
-		bean.setUser_pwd(request.getParameter("user_pwd"));
-		bean.setUser_name(request.getParameter("user_name"));
-		bean.setUser_nickname(request.getParameter("user_nickname"));
-		bean.setUser_email(request.getParameter("user_email"));
-		bean.setUser_phone(request.getParameter("user_phone"));
-		bean.setUser_address(request.getParameter("user_address"));
-		bean.setUser_birth(request.getParameter("user_birth"));
-		bean.setUser_gender(request.getParameter("user_gender"));
-		bean.setUser_remark(request.getParameter("user_remark"));
-		bean.setUser_postcode(Integer.parseInt(request.getParameter("pastcode")));
+		bean.setUser_id(request.getParameter("id"));
+		bean.setUser_pwd(request.getParameter("pwd"));
+		bean.setUser_name(request.getParameter("name"));
+		bean.setUser_nickname(request.getParameter("nickname"));
+		bean.setUser_email(request.getParameter("mail"));
+		bean.setUser_phone(request.getParameter("phone"));
 		bean.setUser_address(request.getParameter("address"));
-		bean.setUser_address1(request.getParameter("address1"));
-		bean.setUser_address_mark(request.getParameter("address_mark"));
+		bean.setUser_birth(request.getParameter("birth"));
+		bean.setUser_gender(request.getParameter("sex"));
+		bean.setUser_remark(request.getParameter("remark"));
+		bean.setUser_postcode(request.getParameter("sample2_postcode"));
+		bean.setUser_address(request.getParameter("sample2_address"));
+		bean.setUser_address1(request.getParameter("sample2_address1"));
+		bean.setUser_detail_address(request.getParameter("sample2_detailaddress"));
 		
+		System.out.println("postcode 유효성 검사 진입");
 		
-		MemberDao dao = new MemberDao();
+//		if ( request.getParameter("postcode") == null || request.getParameter("postcode").equals("")) {
+//			bean.setUser_postcode(0);
+//			
+//			System.out.println("postcode 공백에 대한 내용 처리 완료");
+//			
+//		} else {
+//			bean.setUser_postcode(Integer.parseInt(request.getParameter("postcode")));
+//			
+//			System.out.println("postcode 공백아 아닐 경우에 대한 내용 처리 완료");
+//		}
 		
-		if ( this.validate(request) == true) { /* log용 txt 파일 만들기 */
+		MemberDao mdao = new MemberDao();
+		
+		if (this.validate(request) == true) {
+			System.out.println("회원가입 유효성 검사 성공(MemberInsertController 68줄)");
 			
-		     String txt = "회원 가입 유효성 검사가 정상적으로 실행 되었습니다." ;
-	         	
-		        String fileName = "../../../../../../src/main/webapp/log" ;
-		         
-		        try{
-		                         
-		            // BufferedWriter 와 FileWriter를 조합하여 사용 (속도 향상)
-		            BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
-		             
-		            // 파일안에 문자열 쓰기
-		            fw.write(txt);
-		            fw.flush();
-		 
-		            fw.close();  // 객체 닫기
-		             
-		             
-		        }catch(Exception e){ /* 파일 읽는데 문제가 생기면 excetion 발생 */
-		            e.printStackTrace();
-		        } // try-catch 끝
-		        
-		        int cnt = -1;
-				
-					cnt = dao.InsertData(bean);
-				
-					new MemberLoginController().doPost(request, response);
+			int cnt = - 1;
 			
+			cnt = mdao.InsertData(bean);
+			
+			new MemberLoginController().doGet(request, response);
+		
 		} else {
-			
-			String txt = "회원 가입 유효성 검사가 실패하였습니다." ;
-         	
-	        String fileName = "../../../../../../src/main/webapp/log" ;
-	         
-	        try{
-	                         
-	            // BufferedWriter 와 FileWriter를 조합하여 사용 (속도 향상)
-	            BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
-	             
-	            // 파일안에 문자열 쓰기
-	            fw.write(txt);
-	            fw.flush();
-	 
-	            fw.close();  // 객체 닫기
-	             
-	             
-	        }catch(Exception e){ /* 파일 읽는데 문제가 생기면 excetion 발생 */
-	            e.printStackTrace();
-	        } // try-catch 끝
-	        
-	        request.setAttribute("bean", bean);
-	        
-	        super.doPost(request, response);
-	        
-	       String gotopage = "/members/memberInsertForm.jsp";
+			System.out.println("회원가입 유효성 검사 실패(MemberInsertController 77줄)");
+
+			super.doPost(request, response);
+			String gotopage = "members/memberInsertForm.jsp";
 			super.GotoPage(gotopage);
-			
-		}
+		} // if - else문 끝
+		
+		}	// doPost 끝
 
-	} // doPost 끝
+	}  // Class 끝
 
-} // class 끝
 
 
 //String token = 
