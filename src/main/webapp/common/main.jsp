@@ -13,49 +13,6 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Offcanvas Menu Begin -->
-<%--     <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__cart">
-            <div class="offcanvas__cart__links">
-                <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            </div>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="<%=FormNo%>main"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-    </div> --%>
-    <!-- Offcanvas Menu End -->
-
-    <%-- <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="header__top__inner">
-                            <div class="header__logo">
-                                <a href="<%=FormNo%>main"><img src="img/logo.png" alt=""></a>
-                            </div>
-                            <div class="header__top__right">
-                                <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="canvas__open">
-                	<i class="fa fa-bars">
-                	</i>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End --> --%>
 
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -285,17 +242,6 @@
         </div>
     </section>
     <!-- Testimonial Section End -->
-
-	<!-- Search Begin -->
-	<div class="search-model">
-	    <div class="h-100 d-flex align-items-center justify-content-center">
-	        <div class="search-close-switch">+</div>
-	        <form class="search-model-form">
-	            <input type="text" id="search-input" placeholder="Search here.....">
-	        </form>
-	    </div>
-	</div>
-	<!-- Search End -->
 
 </body>
 
