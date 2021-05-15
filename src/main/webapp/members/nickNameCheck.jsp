@@ -12,7 +12,7 @@
 	<script type="text/javascript">
 	
 		function meClose(nickisCheck) {
-			opener.myform.isCheck.value = nickisCheck;
+			opener.joinform.nickisCheck.value = nickisCheck;
 			self.close();
 		}
 		
