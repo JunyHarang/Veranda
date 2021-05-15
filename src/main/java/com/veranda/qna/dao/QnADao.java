@@ -25,7 +25,47 @@ public class QnADao extends SuperDao{
 	
 	
 	public QnA SelectDataByPk( int no ){
-		return null;
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;				
+		
+		String sql = " select * from qnas" ;
+		sql += " where qna_no = ?" ;
+		
+		QnA bean = null ;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;
+			
+			pstmt.setInt( 1, no );
+			
+			rs = pstmt.executeQuery() ; 
+			
+			if ( rs.next() ) { 
+				bean = new QnA(); 
+				
+				bean.setNo(rs.getInt("qna_no"));
+				bean.setUser_no(rs.getInt("user_no"));
+				
+				bean.setTitle(rs.getString("qna_title"));
+				bean.setContent(rs.getString("qna_content"));
+				bean.setCategory(rs.getString("qna_category"));
+				
+				bean.setDate(String.valueOf(rs.getDate("qna_date")));				
+				
+			}
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null){ rs.close(); } 
+				if( pstmt != null){ pstmt.close(); } 
+				this.closeConnection() ;
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		} 		
+		return bean  ;
 	}
 	
 	public List<QnA> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
@@ -34,19 +74,21 @@ public class QnADao extends SuperDao{
 		
 		ResultSet rs = null;
 		
-		String sql = "select ranking, qna_no, qna_title, qna_category, qna_date ";
-		sql += " from (select qna_no, qna_title, qna_category, qna_date, ";
-		sql += " rank() over(order by qna_no desc) as ranking ";
-		sql += " from qnas";
+//		String sql = "select ranking, qna_no, qna_title, qna_category, qna_date ";
+//		sql += " from (select qna_no, qna_title, qna_category, qna_date, ";
+//		sql += " rank() over(order by qna_no desc) as ranking ";
+//		sql += " from qnas";
+//		
+//		if(mode.equalsIgnoreCase("all") == false) {
+//			System.out.println("not all search mode");
+//			sql += "where " + mode + " like '%" + keyword + "%' ";
+//		}
+//		
+//		sql += " ) where ranking between ? and ? " ;
+//
+//		sql = "select qna_no qna_title, qna_category, qna_date from qnas";
 		
-		if(mode.equalsIgnoreCase("all") == false) {
-			System.out.println("not all search mode");
-			sql += "where " + mode + " like '%" + keyword + "%' ";
-		}
-		
-		sql += " ) where ranking between ? and ? " ;
-
-		sql = "select qna_no qna_title, qna_category, qna_date from qnas";
+		String sql = "select qna_no, qna_title, qna_category, qna_date from qnas";
 		
 		List<QnA> lists = new ArrayList<QnA>();
 		try {
@@ -56,8 +98,8 @@ public class QnADao extends SuperDao{
 			
 			pstmt = this.conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, beginRow);
-			pstmt.setInt(2, endRow);
+//			pstmt.setInt(1, beginRow);
+//			pstmt.setInt(2, endRow);
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -67,6 +109,11 @@ public class QnADao extends SuperDao{
 				bean.setTitle(rs.getString("qna_title"));
 				bean.setCategory(rs.getString("qna_category"));
 				bean.setDate(rs.getString("qna_date"));
+				
+				System.out.println(bean.getNo());
+				System.out.println(bean.getTitle());
+				System.out.println(bean.getCategory());
+				System.out.println(bean.getDate());
 				
 				lists.add(bean);
 			}

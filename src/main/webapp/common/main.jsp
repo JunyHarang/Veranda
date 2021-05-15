@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
 <!DOCTYPE HTML>
 <html lang="zxx">
@@ -17,7 +17,7 @@
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
+            <div class="hero__item set-bg" data-setbg="img/picto/야채1.jpg">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
@@ -208,34 +208,34 @@
             <div class="row">
                 <div class="testimonial__slider owl-carousel">
                     <div class="col-lg-6">
-                    	<div class="testimonial__item">
-                        	<img src="img/shop/product-1.jpg" width="150" height="250">
+                       <div class="testimonial__item">
+                           <img src="img/shop/product-1.jpg" width="150" height="250">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                    	<div class="testimonial__item">
-                    		<img src="img/shop/product-2.jpg" width="150" height="250">
-                    	</div>
+                       <div class="testimonial__item">
+                          <img src="img/shop/product-2.jpg" width="150" height="250">
+                       </div>
                     </div>
-					<div class="col-lg-6">
-                    	<div class="testimonial__item">
-                        	<img src="img/shop/product-3.jpg" width="150" height="250">
+               <div class="col-lg-6">
+                       <div class="testimonial__item">
+                           <img src="img/shop/product-3.jpg" width="150" height="250">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                    	<div class="testimonial__item">
-                    		<img src="img/shop/product-4.jpg" width="150" height="250">
-                    	</div>
+                       <div class="testimonial__item">
+                          <img src="img/shop/product-4.jpg" width="150" height="250">
+                       </div>
                     </div>
                     <div class="col-lg-6">
-                    	<div class="testimonial__item">
-                        	<img src="img/shop/product-5.jpg" width="150" height="250">
+                       <div class="testimonial__item">
+                           <img src="img/shop/product-5.jpg" width="150" height="250">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                    	<div class="testimonial__item">
-                    		<img src="img/shop/product-6.jpg" width="150" height="250">
-                    	</div>
+                       <div class="testimonial__item">
+                          <img src="img/shop/product-6.jpg" width="150" height="250">
+                       </div>
                     </div>                   
                 </div>
             </div>

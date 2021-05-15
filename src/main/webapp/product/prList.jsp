@@ -1,139 +1,113 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ include file="./../common/common.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ include file="./../common/common.jsp"%>
 <%
-	/* position for grid system */	
-	int offset = 2 ;
-	int mywidth = twelve - 2 * offset ;
-	int formleft = 3 ;
-	int formright = twelve - formleft ;
-	int rightButton = 2 ;
-%> 
-<!DOCTYPE html><html>
+/* position for grid system */
+int offset = 2;
+int mywidth = twelve - 2 * offset;
+int formleft = 3;
+int formright = twelve - formleft;
+//int rightButton = 2 ;
+%>
+<!DOCTYPE html>
+<html> 
 <head>
-	<script>	
-		function search(){
-			var mode = $('#mode').val() ;
-			var keyword = $('#keyword').val() ;
-			location.href='<%=FormNo%>prList' + '&mode=' + mode + '&keyword=' + keyword ;
-		}
-		function searchAll(){
-			location.href='<%=FormNo%>prList';
-		}
-		function writeForm(){
-			location.href='<%=FormNo%>prInsert';
-		}
-		
-		$(document).ready(function(){
-			
-		});
-</script> 
+<style type="text/css">
+   .checkout__input_2 input{
+      height: 350px;
+      width: 100%;
+      border: 1px solid #e1e1e1;
+      font-size: 14px;
+      color: #666666;
+      padding-left: 20px;
+      margin-bottom: 20px;
+   }
+   .checkout__input_2 p span {
+        color: #f08632;
+   }
+</style>
+<script>
+   $(document).ready(function() {
+   });
+</script>
 </head>
-
 <body>
-	<div class="container col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h4>상품 게시판</h4>
-			</div>
-			<div class="panel-body">
-				<table class="table table-hover">
-					<thead>
-					<tr>
-						<th>번호</th>
-						<th>카테고리</th>
-						<th>글 제목</th>
-						<th>날짜</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-					<tbody>
-						<tr>
-							<td align="center" colspan="12">
-								<form action="" class="form-inline" role="form" name="myform" method="get"> 
-									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
-											<option value="all" selected="selected">-- 선택하세요.
-										
-											<option value="sellcomplete">판매완료
-											<option value="selling">판매중
-										</select>
-									</div>									
-									<div class="form-group">
-										<input type="text" class="form-control" name="keyword" id="keyword"> 
-									</div>									
-									&nbsp;&nbsp;
-									<button class="btn btn-default" type="button" onclick="search();">검색</button>
-									&nbsp;&nbsp;
-									
-									&nbsp;&nbsp;
-									${pageInfo.pagingStatus}																	
-								</form>
-							</td>
-						</tr>
-						
-						
-						<tr>
-							<td>
-								<form action="" align="right" >
-									<button  class="btn btn-default" type="button" onclick="writeForm();">글쓰기</button>
-									&nbsp;&nbsp;
-									${pageInfo.pagingStatus}																	
-								</form>
-							</td>
-						</tr>
-				<c:forEach var="bean" items="${requestScope.lists}">
-				<tr>
-					<td>${bean.no}</td>
-					<td>${bean.state}</td>
-					<td>${bean.title}</td>
-					<td>${bean.content}</td>
-					<td>${bean.date}</td>
-					<td>${bean.readhit}</td>
-					
-				
-					<td>
-						<a href="<%=FormNo%>prDetailView&num=${bean.num}&${requestScope.parameters}">
-							${bean.title}
-						</a>
-					</td>
-					<td>${bean.inputdate}</td>
-					<td>
-						<c:if test="${whologin == 2}">
-							<a href="<%=FormNo%>prDelete&num=${bean.num}&${requestScope.parameters}">
-								삭제
-							</a>
-						</c:if>
-						<c:if test="${whologin != 2}">
-							삭제
-						</c:if>				
-					</td>
-					<td>
-						<c:if test="${whologin == 2}">
-							<a href="<%=FormNo%>prUpdate&num=${bean.num}&${requestScope.parameters}">
-								수정
-							</a>
-						</c:if>
-						<c:if test="${whologin != 2}">
-							수정
-						</c:if>		 		
-						
-					</td>
-				</tr>
-				</c:forEach>											
-					</tbody>
-				</table>
-			</div>
-			<div align="center">
-				<footer>${pageInfo.pagingHtml}</footer>
-			 </div>
-               
-               </div>
-               
-               </div>
-               
-               
+   <!-- 게시판 입력 폼 시작 -->
 
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__text">
+                        <h2>상품게시판</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__links">
+                        <a href="<%=FormNo%>main">Home</a>
+                        <span>상품게시판</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
 
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <form name="insertform" action="<%=FormYes%>" method="post">
+                   <input type="hidden" name="command" value="prInsert">
+                   <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6">
+                            <h6 class="coupon__code">
+                               <span class="icon_tag_alt">
+                               </span> 상품게시글 글 작성
+                           </h6>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="checkout__input">
+                                        <p>제목<span>*</span></p>
+                                        <input type="text" name="title" id="title">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                           <div class="checkout__input">
+                                        <p>카테고리<span>*</span></p>
+                                        <div>
+                                         <select id="category" name="category" class="form">
+                                            <option value="-" selected="selected">선택하세요
+                                            <option value="">자유게시판
+                                            <option value="">정보공유방
+                                            <option value="">구매후기방
+                                            <option value="">베란다뽐내기방
+                                                    
+                                         </select>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input_2">
+                                <p>글 내용<span>*</span></p>
+                                <input type="text" name="content" id="content" width="400" height="300">
+                            </div>
+                            <button type="submit" class="site-btn" onclick="return checkForm();">
+                               등록
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+   <!-- 게시판 입력 폼 끝 -->
 </body>
 </html>
+
+
+
