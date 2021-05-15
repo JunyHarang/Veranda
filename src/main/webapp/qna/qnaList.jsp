@@ -22,7 +22,7 @@
 			location.href='<%=FormNo%>qnaList';
 		}
 		function writeForm(){
-			location.href='<%=FormNo%>qnaInsert';
+			location.href='<%=FormNo%>prInsert';
 		}
 		
 		$(document).ready(function(){
