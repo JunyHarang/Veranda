@@ -16,11 +16,11 @@
 p.groove {border-style: groove; border-color: white; }
 
 p {
-	padding-top: 55px;
-	padding-right: 55px;
-	padding-bottom: 55px;
-	padding-left: 55px;
-	 } 
+   padding-top: 55px;
+   padding-right: 55px;
+   padding-bottom: 55px;
+   padding-left: 55px;
+    } 
 </style>
 </head>
 <body>
@@ -87,9 +87,9 @@ p {
                                 </p>
                                  
                                 
-                           		</div>
-                           	 </div>
-                       	 </div>
+                                 </div>
+                               </div>
+                           </div>
                        </div>
                     </div>
                 </div>
