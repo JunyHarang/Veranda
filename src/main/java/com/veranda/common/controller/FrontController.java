@@ -110,14 +110,15 @@ public class FrontController extends HttpServlet {//implements SuperController{
 		SuperController controller = actionMaps.get(command);
 		if(controller != null){			
 			if ( method.equals("get") ) {
-				System.out.println( controller.toString() + " GET 메소드 호출됨" );
+				System.out.println( controller.toString() + " GET 메소드 호출 되었습니다!" );
 				controller.doGet( request, response ); //해당 doProcess() 메소드를 호출한다.	
 			} else if ( method.equals("post") ) {
-				System.out.println( controller.toString() + " POST 메소드 호출됨" );
+				System.out.println( controller.toString() + " POST 메소드 호출 되었습니다!" );
 				controller.doPost( request, response ); //해당 doProcess() 메소드를 호출한다.
 			}
 		}else{
-			System.out.println( command + "는 존재하지 않는군요.");
+			System.out.println( command + "라는 command가 존재하지 않습니다. ");
+			System.out.println(" mappinglist 쪽을 검토하여 주시기 바랍니다! ");
 		}
 	}	
 	protected void doGet(HttpServletRequest request,

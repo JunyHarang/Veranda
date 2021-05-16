@@ -14,6 +14,9 @@ public class CommunityInsertController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
+		String gotopage = "/community/communityInsert.jsp" ;
+		super.GotoPage(gotopage);
+		
 	}
 	
 	@Override

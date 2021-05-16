@@ -2,8 +2,8 @@ hello=com.veranda.common.controller.HelloController
 main=com.veranda.common.controller.MainController
 world=com.veranda.common.controller.WorldController
 ##################### Community Section #####################
-#coDetailView=com.veranda.community.controller.CommuityDetailViewController
-#coInsert=com.veranda.community.controller.CommuityInsertController
+coDetailView=com.veranda.community.controller.CommunityDetailViewController
+coInsert=com.veranda.community.controller.CommunityInsertController
 coList=com.veranda.community.controller.CommunityListController
 #coUpdate=com.veranda.community.controller.CommuityUpdateController
 #coDelete=com.veranda.community.controller.CommuityDeleteController
