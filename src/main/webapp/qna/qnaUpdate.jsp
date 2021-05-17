@@ -111,7 +111,7 @@ int rightButton = 2;
 						<div class="col-lg-12 col-md-6">
 							<h6 class="coupon__code">
 								<span class="icon_tag_alt"> </span> 
-								Q&A 게시판 글 작성
+								Q&A 게시물 수정
 							</h6>
 							<div class="row">
 								<div class="col-lg-8">
@@ -122,7 +122,8 @@ int rightButton = 2;
 													*
 												</span>
 										</p>
-										<input type="text" name="title" id="title">
+										<input type="text" class="form-control" id="title" 
+				        				name="title" value="${bean.title}">
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -143,15 +144,20 @@ int rightButton = 2;
 									</div>
 								</div>
 							</div>
-							<div class="checkout__input_2">
-								<p>
-									글 내용
-										<span>
-											*
-										</span>
-								</p>
-								<input type="text" name="content" id="content">
+							<div class="input-div">
+								<div class="checkout__input_2">
+									<p>
+										글 내용
+											<span>
+												*
+											</span>
+									</p>
+									<textarea rows="10" cols="125" name="content" style="resize: none;">
+										${bean.content}
+									</textarea>
+								</div>
 							</div>
+							<br>
 							<button type="submit" class="site-btn" onclick="return checkForm();">
 								등록
 							</button>

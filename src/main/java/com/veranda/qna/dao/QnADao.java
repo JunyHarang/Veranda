@@ -74,22 +74,18 @@ public class QnADao extends SuperDao{
 		
 		ResultSet rs = null;
 		
-//		String sql = "select ranking, qna_no, qna_title, qna_category, qna_date ";
-//		sql += " from (select qna_no, qna_title, qna_category, qna_date, ";
-//		sql += " rank() over(order by qna_no desc) as ranking ";
-//		sql += " from qnas";
-//		
-//		if(mode.equalsIgnoreCase("all") == false) {
-//			System.out.println("not all search mode");
-//			sql += "where " + mode + " like '%" + keyword + "%' ";
-//		}
-//		
-//		sql += " ) where ranking between ? and ? " ;
-//
-//		sql = "select qna_no qna_title, qna_category, qna_date from qnas";
+		String sql = "select ranking, qna_no, qna_title, qna_category, qna_date ";
+		sql += " from (select qna_no, qna_title, qna_category, qna_date, ";
+		sql += " rank() over(order by qna_no desc) as ranking ";
+		sql += " from qnas";
 		
-		String sql = "select qna_no, qna_title, qna_category, qna_date from qnas";
+		if(mode.equalsIgnoreCase("all") == false) {
+			System.out.println("not all search mode");
+			sql += "where " + mode + " like '%" + keyword + "%' ";
+		}
 		
+		sql += " ) where ranking between ? and ? " ;
+
 		List<QnA> lists = new ArrayList<QnA>();
 		try {
 			if(this.conn == null) {
@@ -98,8 +94,8 @@ public class QnADao extends SuperDao{
 			
 			pstmt = this.conn.prepareStatement(sql);
 			
-//			pstmt.setInt(1, beginRow);
-//			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, beginRow);
+			pstmt.setInt(2, endRow);
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -143,7 +139,7 @@ public class QnADao extends SuperDao{
 		return 0;
 	}
 
-	public int selectTotalCount(String mode, String keyword) {
+	public int SelectTotalCount(String mode, String keyword) {
 		
 		PreparedStatement pstmt = null ;
 		
