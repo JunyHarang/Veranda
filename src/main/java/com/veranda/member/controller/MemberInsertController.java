@@ -47,7 +47,7 @@ public class MemberInsertController extends SuperClass{
 		bean.setUser_postcode(request.getParameter("sample2_postcode"));
 		bean.setUser_address(request.getParameter("sample2_address"));
 		bean.setUser_address1(request.getParameter("sample2_address1"));
-		bean.setUser_detail_address(request.getParameter("sample2_detailaddress"));
+		bean.setUser_address2(request.getParameter("sample2_detailaddress"));
 		
 		System.out.println("postcode 유효성 검사 진입");
 		

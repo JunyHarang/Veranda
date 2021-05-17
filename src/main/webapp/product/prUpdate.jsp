@@ -105,7 +105,7 @@ int rightButton = 2;
       <div class="container">
          <div class="checkout__form">
             <form name="insertform" action="<%=FormYes%>" method="post">
-               <input type="hidden" name="command" value="prInsert"> 
+               <input type="hidden" name="command" value="prUpdate"> 
                <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
                <div class="row">
                   <div class="col-lg-12 col-md-6">

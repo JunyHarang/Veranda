@@ -1,6 +1,7 @@
 package com.veranda.community.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class CommunityDetailViewController extends SuperClass{
 		
 		Community bean = dao.SelectDataByPk(no);
 		
+		List<Member> lists = dao.searchmember();
+		
 //		Member loginfo = (Member)super.session.getAttribute("loginfo");  // 로그인 한 사란의 객체 정보를 담을 변수 선언
 		
 //		if ( loginfo.getNo() != ( bean.getUser_no() ) || bean.getUser_no() == 0) {// 작성자 이 외에 사람이 게시글을 보았을 때, 조회수가 증가되기 위한 조건문
@@ -31,6 +34,8 @@ public class CommunityDetailViewController extends SuperClass{
 //			dao.UpdateReadhit(no); // 조회수 증가를 위해 dao에 updatereadhit 메서드 호출
 //			bean.setReadhit( bean.getReadhit() + readhit );
 //		}
+		
+		request.setAttribute("lists", lists);
 		
 		request.setAttribute("bean", bean);
 		
