@@ -87,4 +87,4 @@ public class MemberLoginController extends SuperClass{
          super.GotoPage(gotopage);  
       }
    }
-}
+}   
