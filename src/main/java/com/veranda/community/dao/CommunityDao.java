@@ -2,6 +2,8 @@ package com.veranda.community.dao;
 
 import com.veranda.common.dao.SuperDao;
 import com.veranda.community.vo.Community;
+import com.veranda.member.vo.Member;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +13,171 @@ import java.util.List;
 public class CommunityDao extends SuperDao{
 	
 	public int InsertData(Community bean) {
-		return 0;
+		
+		String sql = " insert into communities(user_no, com_no, com_title, com_category, com_content, com_image1, com_image2, com_image3, com_image4, com_image5, com_image6, com_image7, com_image8, com_image9, com_image10) values (?, communityseq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+		
+		PreparedStatement pstmt = null;
+		
+		int cnt = -1 ;
+		
+		try {
+			
+			System.out.println("CommunityDao의 InsertData()에 try문에 진입하였습니다.");
+			
+			if ( conn == null ) {
+				super.conn = super.getConnection();
+			} // DB 연결 확인 if문 끝
+			
+			conn.setAutoCommit(false);		// 자동 DB commit 해제
+			
+			pstmt = super.conn.prepareStatement(sql);
+			
+			System.out.println("CommunityDao의 InsertData()에 SQL문 치환 작업이 시작 됩니다.");
+			
+			pstmt.setInt(1, bean.getUser_no());
+			pstmt.setString(2, bean.getTitle());
+			pstmt.setString(3, bean.getCategory());
+			pstmt.setString(4, bean.getContent());
+			
+			pstmt.setString(5, bean.getImage1());
+			pstmt.setString(6, bean.getImage2());
+			pstmt.setString(7, bean.getImage3());
+			pstmt.setString(8, bean.getImage4());
+			pstmt.setString(9, bean.getImage5());
+			pstmt.setString(10, bean.getImage6());
+			pstmt.setString(11, bean.getImage7());
+			pstmt.setString(12, bean.getImage8());
+			pstmt.setString(13, bean.getImage9());
+			pstmt.setString(14, bean.getImage10());
+			
+			System.out.println("CommunityDao의 InsertData()에 SQL문 치환 작업이 완료 되었습니다.");
+			
+			cnt = pstmt.executeUpdate();
+			
+			conn.commit(); 	// DB에 Data가 정상적으로 들어가면 commit;
+			
+		} catch (Exception e) {
+			System.out.println("CommunityDao의 InsertData()에 문제가 생겨 catch문 exception e로 진입 하였습니다.");
+			
+			SQLException err = (SQLException)e;
+			
+			cnt = - err.getErrorCode();
+			
+			e.printStackTrace();
+			
+			try {
+				System.out.println("CommunityDao의 InsertData()에 문제가 생겨 catch문 exception e의 try문으로 진입 하였습니다. DB RollBack을 실시합니다.");
+				
+				conn.rollback();
+			
+			} catch (Exception e2) {
+				System.out.println("CommunityDao의 InsertData()에 문제가 생겨 catch문 exception e2로 진입 하였습니다.");
+				
+				e2.printStackTrace();
+			} // e2 try-catch 끝
+			
+		} finally {
+			System.out.println("CommunityDao의 InsertData()에 finally에 진입 합니다.");
+			
+					try {
+						
+						if (pstmt != null) {
+							pstmt.close();
+						}
+						
+						super.closeConnection();
+						
+					} catch (Exception e3) {
+						System.out.println("CommunityDao의 InsertData()에 문제가 생겨 catch문 exception e3로 진입 하였습니다.");
+						
+						e3.printStackTrace();
+					}
+			
+		}
+		
+		return cnt;
 	}
 	
 	public int UpdateData(Community bean) {
-		return 0;
-	}
+		
+		String sql = " update communities set com_title=?, com_category=?, com_content=?, com_image1=?, com_image2=?, com_image3=?, com_image4=?, com_image5=?, com_image6=?, com_image7=?, com_image8=?, com_image9=?, com_image10=? where com_no=? ";
+		
+		PreparedStatement pstmt = null;
+
+		int cnt = - 1;
+		
+		try {
+			
+			if ( conn == null ) {
+				super.conn = super.getConnection();
+			}
+			
+			conn.setAutoCommit(false);
+			
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bean.getTitle());
+			pstmt.setString(2, bean.getCategory());
+			pstmt.setString(3, bean.getContent());
+			pstmt.setString(4, bean.getImage1());
+			pstmt.setString(5, bean.getImage2());
+			pstmt.setString(6, bean.getImage3());
+			pstmt.setString(7, bean.getImage4());
+			pstmt.setString(8, bean.getImage5());
+			pstmt.setString(9, bean.getImage6());
+			pstmt.setString(10, bean.getImage7());
+			pstmt.setString(11, bean.getImage8());
+			pstmt.setString(12, bean.getImage9());
+			pstmt.setString(13, bean.getImage10());
+			
+			pstmt.setInt(14, bean.getNo());
+			
+			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
+
+			System.out.println("CommunityDao의 UpdateData()에 DB Data 수정이 완료 되었습니다.");
+			
+		} catch (SQLException e) {
+			System.out.println("CommunityDao의 UpdateData()에 문제가 발생되어 Catch문이 실행 되었습니다.");
+			
+			SQLException err = (SQLException)e;
+			
+			cnt = - err.getErrorCode();
+			
+			e.printStackTrace();
+			
+			try {
+				System.out.println("CommunityDao의 UpdateData()에 문제가 발생되어 rollback이 실행 되었습니다.");
+				
+				conn.rollback();
+			
+			} catch (Exception e2) {
+				System.out.println("CommunityDao의 UpdateData()에 문제가 발생되었고, rollback작업도 실패 되었습니다.");
+			
+				e2.printStackTrace();
+			
+			} finally {
+				
+				try {
+					
+					if (pstmt != null) {
+						pstmt.close();
+					} // if문 끝
+					
+					super.closeConnection();
+					
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				} // 2 Try - catch 끝
+				
+			} // finally 끝
+			
+		} // 1 Try - catch 끝
+		
+		return cnt;
+		
+	} // UpdateData() 끝
 	
 	
 	public int DeleteData( int no ){
@@ -252,5 +413,56 @@ public class CommunityDao extends SuperDao{
 		} 		
 		return cnt  ; 
 	}
+	
+	public List<Member> searchmember () {
+		System.out.println("CommunityDao의 searchmember()가 시작 되었습니다.");
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;				
+
+		String sql = " select user_no from members " ;
+		
+		Member bean = null;
+		
+		List<Member> lists = new ArrayList<Member>();
+		
+		try {
+			
+			if( this.conn == null ) { 
+				this.conn = this.getConnection() ; 
+			}			
+			
+			pstmt = this.conn.prepareStatement(sql) ;			 
+			rs = pstmt.executeQuery() ; 
+			
+			while (rs.next()) {
+				
+				bean = new Member();
+				
+				bean.setNo(rs.getInt("user_no"));
+				
+				lists.add(bean);
+			}
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null){ 
+					rs.close(); 
+				}
+				
+				if( pstmt != null){ 
+					pstmt.close(); 
+				}
+				
+				this.closeConnection() ;
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		} 		
+		return lists  ; 
+	}
+	
 }
 

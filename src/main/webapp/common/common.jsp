@@ -1,5 +1,3 @@
-common
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -57,6 +55,16 @@ common
       </c:if>
    </c:if>   
 </head>
+
+<style>
+.logo {
+   width: 400;
+    padding-bottom: 40px;
+}
+</style>
+
+
+
 <body>
 <%   
    String contextPath = request.getContextPath();
@@ -72,27 +80,29 @@ common
                     <div class="col-lg-12">
                         <div class="header__top__inner">
                             <div class="header__logo">
-                                <a href="<%=FormNo%>main"><img src="img/logo.png" alt=""></a>
+                            
+                                <a href="<%=FormNo%>main"><img src="img/로고3.png" align="middle" alt="" class="logo"></a>
                             </div>
-                            <div class="header__top__left">
-                                <div class="header__top__right__links">
-                                    <ul>
-                                    <li>
-                  <a href="#" class="dropdown-toggle"> 
-                     <font color='white'>
-                        <c:if test="${whologin == 0}">
-                           미로그인
+                            <a  class=""> 
+                     <font color='green'>
+                     <c:if test="${whologin == 0}">
+                           로그인 후 이용해주세요
                         </c:if>
+                     
                         <c:if test="${whologin != 0}">
-                           ${sessionScope.loginfo.user_name}(${sessionScope.loginfo.user_id}) 님
+                           ${sessionScope.loginfo.user_name}(${sessionScope.loginfo.user_id}) 님 반갑습니다
                         </c:if>
                      </font>
                   </a>
-               </li>
+                            <div class="header__top__left">
+                                <div class="header__top__right__links">
+                             <%--    <li>--%>
+                  
+             <%--   </li>--%>
+                                    <ul>
+                                    
                               <li>
-                              <a href="<%=FormNo%>meLogin">
-                                       로그인
-                                    </a>
+         
                                  <c:if test="${whologin == 0}">
                                     <a href="<%=FormNo%>meLogin">
                                        로그인
@@ -100,28 +110,21 @@ common
                                     <a href="<%=FormNo%>meInsert">
                                        회원 가입
                                     </a>
-                                    <a href="<%=FormNo%>myPage">
-                                       마이 페이지
-                                    </a>
                                  </c:if>
                                  <c:if test="${whologin != 0}">
                                     <a href="<%=FormNo%>meLogout">
                                        로그아웃
                                     </a>
-                                    <a href="<%=FormNo%>meUpdate">
-                                       회원 정보 수정
-                                    </a>   
+                                    <a href="<%=FormNo%>myPage">
+                                       마이 페이지
+                                    </a>  
                                  </c:if>
                                  <c:if test="${whologin == 1}">
                                     <a href="<%=FormNo%>meDelete&id=${sessionScope.loginfo.user_id}">
                                        회원 탈퇴
                                     </a>
                                  </c:if>
-                                 <c:if test="${whologin == 2}">
-                                    <a href="<%=FormNo%>meList">
-                                       회원 목록 보기
-                                    </a>
-                                 </c:if>
+                                 
                               </li>
                            </ul>
                                 </div>
@@ -135,6 +138,12 @@ common
                 </div>
             </div>
         </div>
+        
+        
+        
+        
+        
+        
       <div class="container">
                <div class="row">
                    <div class="col-lg-12">

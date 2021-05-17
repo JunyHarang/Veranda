@@ -5,7 +5,7 @@ world=com.veranda.common.controller.WorldController
 coDetailView=com.veranda.community.controller.CommunityDetailViewController
 coInsert=com.veranda.community.controller.CommunityInsertController
 coList=com.veranda.community.controller.CommunityListController
-#coUpdate=com.veranda.community.controller.CommuityUpdateController
+coUpdate=com.veranda.community.controller.CommunityUpdateController
 #coDelete=com.veranda.community.controller.CommuityDeleteController
 #coEmotion=com.veranda.community.controller.CommuityEmotionController
 ############### CommunityComment Section ####################
@@ -27,8 +27,8 @@ meIdcheck=com.veranda.member.controller.MemberIdcheckController
 #meNickcheck=com.veranda.member.controller.MemberNickcheckController
 meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
-#meLogin=com.veranda.member.controller.MemberLoginControllerController
-#meLogout=com.veranda.member.controller.MemberLogoutController
+meLogin=com.veranda.member.controller.MemberLoginController
+meLogout=com.veranda.member.controller.MemberLogoutController
 meUpdate=com.veranda.member.controller.MemberUpdateController
 #meZipcheck=com.veranda.member.controller.MemberZipcheckController
 ############### Notice Section ####################
@@ -42,7 +42,7 @@ noUpdate=com.veranda.notice.controller.NoticeUpdateController
 prDetailView=com.veranda.product.controller.ProductDetailViewController
 prInsert=com.veranda.product.controller.ProductInsertController
 prList=com.veranda.product.controller.ProductListController
-#prUpdate=com.veranda.product.controller.ProductUpdateController
+prUpdate=com.veranda.product.controller.ProductUpdateController
 #prZim=com.veranda.product.controller.ProductZimController
 ############### ProductComment Section ####################
 #pcoDelete=com.veranda.productcomment.controller.ProductCommentDeleteController
