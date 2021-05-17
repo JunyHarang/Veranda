@@ -8,10 +8,10 @@ public class Member {
 	private String user_nickname; // 회원 닉네임
 	private String user_email; // 회원 이메일
 	private String user_phone; // 회원 연락처
-	private String user_postcode; // 회원 주소
+	private int user_postcode; // 회원 주소
 	private String user_address; // 회원 주소
 	private String user_address1; // 회원 주소
-	private String user_detail_address; // 회원 주소
+	private String user_address_mark; // 회원 주소
 	private String user_birth; // 회원 생년월일
 	private String user_gender; // 회원 성별
 	private String user_remark; // 회원 탈퇴 시 사용될 비고란
@@ -76,11 +76,11 @@ public class Member {
 		this.user_phone = user_phone;
 	}
 
-	public String getUser_postcode() {
+	public int getUser_postcode() {
 		return user_postcode;
 	}
 
-	public void setUser_postcode(String user_postcode) {
+	public void setUser_postcode(int user_postcode) {
 		this.user_postcode = user_postcode;
 	}
 
@@ -100,12 +100,12 @@ public class Member {
 		this.user_address1 = user_address1;
 	}
 
-	public String getUser_detail_address() {
-		return user_detail_address;
+	public String getUser_address_mark() {
+		return user_address_mark;
 	}
 
-	public void setUser_detail_address(String user_detil_address) {
-		this.user_detail_address = user_detil_address;
+	public void setUser_address_mark(String user_address_mark) {
+		this.user_address_mark = user_address_mark;
 	}
 
 	public String getUser_birth() {
