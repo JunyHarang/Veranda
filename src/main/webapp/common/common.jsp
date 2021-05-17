@@ -65,6 +65,7 @@
     text-align: center;
     justify-content: center;
 }
+
 </style>
 
 

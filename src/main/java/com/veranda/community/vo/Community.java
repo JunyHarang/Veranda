@@ -21,6 +21,7 @@ public class Community {
 	private String image8; // 사진8
 	private String image9; // 사진9
 	private String image10; // 사진10
+	private int state; // 상품 판매 상태(0 이면 거래 가능, 1이면 판매 완료)
 	
 	public Community() {
 		// TODO Auto-generated constructor stub
@@ -176,6 +177,23 @@ public class Community {
 
 	public void setImage10(String image10) {
 		this.image10 = image10;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "Community [no=" + no + ", user_no=" + user_no + ", title=" + title + ", content=" + content
+				+ ", category=" + category + ", date=" + date + ", readhit=" + readhit + ", like=" + like + ", hate="
+				+ hate + ", image1=" + image1 + ", image2=" + image2 + ", image3=" + image3 + ", image4=" + image4
+				+ ", image5=" + image5 + ", image6=" + image6 + ", image7=" + image7 + ", image8=" + image8
+				+ ", image9=" + image9 + ", image10=" + image10 + ", state=" + state + "]";
 	}
 	
 }
