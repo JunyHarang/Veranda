@@ -42,7 +42,7 @@ public class MemberDao2 extends SuperDao{
 				bean.setUser_remark(String.valueOf(rs.getString("user_remark")));
 
 				bean.setUser_address1(String.valueOf(rs.getString("user_address1")));
-				bean.setUser_address_mark(String.valueOf(rs.getString("user_address_mark")));
+				bean.setUser_address2(String.valueOf(rs.getString("user_address2")));
 				bean.setUser_postcode(Integer.parseInt(rs.getString("user_postcode")));
 
 	         }
@@ -62,7 +62,7 @@ public class MemberDao2 extends SuperDao{
 	}
 
 	public int UpdateInfo(Member bean) {
-		String sql = " update members set user_nickname = ?, user_postcode = ?, user_address = ?, user_address1 = ?, user_address_mark = ? ";
+		String sql = " update members set user_nickname = ?, user_postcode = ?, user_address = ?, user_address1 = ?, user_address2 = ? ";
 		sql += " where user_no = ? ";
 
 		PreparedStatement pstmt = null;
@@ -78,7 +78,7 @@ public class MemberDao2 extends SuperDao{
 			pstmt.setInt(2, bean.getUser_postcode());
 			pstmt.setString(3, bean.getUser_address());
 			pstmt.setString(4, bean.getUser_address1());
-			pstmt.setString(5, bean.getUser_address_mark());
+			pstmt.setString(5, bean.getUser_address2());
 			pstmt.setInt(6, bean.getNo());
 
 			cnt = pstmt.executeUpdate();

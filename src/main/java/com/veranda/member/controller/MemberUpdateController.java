@@ -33,7 +33,7 @@ public class MemberUpdateController extends SuperClass{
 		bean.setUser_postcode(Integer.parseInt(request.getParameter("postcode")));
 		bean.setUser_address(request.getParameter("address"));
 		bean.setUser_address1(request.getParameter("address1"));
-		bean.setUser_address_mark(request.getParameter("aaddress_mark"));
+		bean.setUser_address2(request.getParameter("aaddress2"));
 //		bean.setUser_phone(request.getParameter("phone"));
 		
 		MemberDao2 dao = new MemberDao2();

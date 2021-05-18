@@ -58,7 +58,7 @@
                                 <h6>생년월일 : ${loginfo.user_birth}</h6>
                                 <h6>성별 : ${loginfo.user_gender}</h6>
                                 <h6>우편번호 : ${loginfo.user_postcode}</h6>
-                                <h6>주소 : ${loginfo.user_address} ${loginfo.user_address1} ${loginfo.user_address_mark}</h6>
+                                <h6>주소 : ${loginfo.user_address} ${loginfo.user_address1} ${loginfo.user_address2}</h6>
                             </div>
                             <a href="<%=FormNo%>meUpdate&id=${sessionScope.loginfo.user_id}" class="primary-btn">회원 정보 수정</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
