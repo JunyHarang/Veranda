@@ -31,7 +31,7 @@
 				return false;
 			} // 닉네임 길이 확인 if문 끝
 			
-			var url = '<%=FormNo%>memNickcheck&nickname='+nickname;
+			var url = '<%=FormNo%>meNickcheck&nickname='+nickname;
 			window.open(url,'mywin','height=150,width=300');
 			
 			if (document.joinform.isCheck.value == 'false') { /* 중복 체크 확인 */
@@ -143,6 +143,7 @@
 	<h4 class="card-title mt-3 text-center">닉네임 주소 전화번호</h4>
     
 	<form name="joinform" action="<%=FormYes%>" method="post">
+	<input type="hidden" name="user_no" value="${loginfo.no}">
 	
 	<%-- 아이디 입력란 --%>
 	<div class="form-group input-group">
@@ -267,7 +268,7 @@
 		</div>
     
     <%-- 연락처 입력란 --%>
-    <div class="form-group input-group">
+   <!--  <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    
 		    <span class="input-group-text"> 
@@ -299,9 +300,9 @@
 		
     	<input name="phone" class="form-control" min="111" max="9999" type="number">
     	<input name="phone1" class="form-control" min="1111" max="9999" type="number">
-    </div> 
+    </div>  -->
     
-    <%-- 회원가입 버튼 --%>                                      
+    <%-- 회원 정보 수정 버튼 --%>                                      
     <div class="form-group">
         <button type="submit" class="btn btn-warning btn-block"> 회원 정보 수정 </button>
         <button type="reset" class="btn btn-warning btn-block"> 초기화 </button>
