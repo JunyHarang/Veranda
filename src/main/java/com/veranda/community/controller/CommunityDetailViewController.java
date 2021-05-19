@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.veranda.common.controller.SuperClass;
 import com.veranda.community.dao.CommunityDao;
 import com.veranda.community.vo.Community;
+import com.veranda.communitycomment.dao.CommunityCommentDao;
+import com.veranda.communitycomment.vo.CommunityComment;
 import com.veranda.member.vo.Member;
 
 public class CommunityDetailViewController extends SuperClass{
@@ -23,7 +25,10 @@ public class CommunityDetailViewController extends SuperClass{
 		
 		Community bean = dao.SelectDataByPk(no);
 		
-		List<Member> lists = dao.searchmember();
+		CommunityCommentDao cdao = new CommunityCommentDao();
+		
+		
+	//	List<Member> lists = dao.searchmember();
 		
 //		Member loginfo = (Member)super.session.getAttribute("loginfo");  // 로그인 한 사란의 객체 정보를 담을 변수 선언
 		
@@ -35,9 +40,9 @@ public class CommunityDetailViewController extends SuperClass{
 //			bean.setReadhit( bean.getReadhit() + readhit );
 //		}
 		
-		request.setAttribute("lists", lists);
-		
 		request.setAttribute("bean", bean);
+		
+//		request.setAttribute("lists", lists);
 		
 		String gotopage = "/community/communityDetailView.jsp";
 		super.GotoPage(gotopage);
@@ -47,6 +52,9 @@ public class CommunityDetailViewController extends SuperClass{
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
+		
+		String gotopage = "/community/communityDetailView.jsp";
+		super.GotoPage(gotopage);
 
 	}
 }

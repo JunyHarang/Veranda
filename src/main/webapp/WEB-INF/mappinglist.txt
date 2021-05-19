@@ -5,9 +5,10 @@ world=com.veranda.common.controller.WorldController
 coDetailView=com.veranda.community.controller.CommunityDetailViewController
 coInsert=com.veranda.community.controller.CommunityInsertController
 coList=com.veranda.community.controller.CommunityListController
-#coUpdate=com.veranda.community.controller.CommuityUpdateController
-#coDelete=com.veranda.community.controller.CommuityDeleteController
-#coEmotion=com.veranda.community.controller.CommuityEmotionController
+coUpdate=com.veranda.community.controller.CommunityUpdateController
+coDelete=com.veranda.community.controller.CommunityDeleteController
+coLike=com.veranda.community.controller.CommunityLikeController
+coHate=com.veranda.community.controller.CommunityHateController
 ############### CommunityComment Section ####################
 #ccoDelete=com.veranda.communitycomment.controller.CommunityCommentDeleteController.CommunityCommentDeleteController
 #ccoInsert=com.veranda.communitycomment.controller.CommunityCommentInsertController.CommunityCommentInsertController

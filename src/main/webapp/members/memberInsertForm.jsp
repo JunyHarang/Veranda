@@ -43,6 +43,7 @@
 			var url = '<%=FormNo%>meIdcheck&id='+id;
 			window.open(url,'mywin','height=150,width=300');
 			
+			
 		} // 아이디 유효성 검사 끝
 		
 		function isCheckFalse() { /* 아이디 유효성 검사 실패 시 */
@@ -534,7 +535,7 @@
     
     <%-- 회원가입 버튼 --%>                                      
     <div class="form-group">
-        <button type="submit" class="btn btn-warning btn-block"> 회원가입  </button>
+        <button type="submit" class="btn btn-warning btn-block" onclick="return overlapid();"> 회원가입  </button>
     </div> 
     
     <%-- 로그인으로 돌아가기 --%>      
@@ -562,3 +563,4 @@ and product landing pages</p>   <br>
 </article>
 </body>
 </html>
+<jsp:include page="/common/footer.jsp"></jsp:include>
