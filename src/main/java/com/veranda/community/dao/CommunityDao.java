@@ -421,8 +421,55 @@ public class CommunityDao extends SuperDao{
 	}
 
 	public int UpdateReadhit(int no) {
-		return 0;
-	}
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = " update communities set com_readhit = com_readhit + 1 where com_no = ? ";
+		
+		int cnt = -1;
+		
+		try {
+			if( this.conn == null ){ 
+				this.conn = this.getConnection() ; 
+			}
+			
+			conn.setAutoCommit( false );
+			
+			pstmt = this.conn.prepareStatement( sql ) ;
+			
+			pstmt.setInt(1, no);
+			
+			cnt = pstmt.executeUpdate() ;
+			
+			conn.commit(); 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			cnt = - 1 ;
+			
+			try {
+				conn.rollback();
+			
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			
+			}
+		} finally{
+			
+			try {
+				if( pstmt != null ){ 
+					pstmt.close(); 
+				}
+				
+				this.closeConnection();
+			
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		}
+		return cnt ; 
+	} //UpdateReadhit 끝
 	
 	public int UpdateLike( Community bean ) {
 		

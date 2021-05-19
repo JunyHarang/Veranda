@@ -111,16 +111,15 @@ int rightButton = 2;
                   <td>${bean.date}</td>
                   <td>
                   
-                  			<a href="<%=FormNo%>coLike&no=${bean.no}&like=${bean.like}&${requestScope.parameters}"> like </a>
-                  			
-                  		<button type="button" id="like" name="like" class="btn btn-primary btn-like" onclick='emotion("like");'> like </button>
+                  		<button type="button" id="like" name="like" class="btn btn-primary btn-like" onclick='emotion("like");'> ${bean.like}
+                  			<i class="fa fa-thumbs-o-up"></i>
+                  		</button>
                   </td>
                   
                   <td>
-                  			
-                  				
-                  				<a href="<%=FormNo%>coHate&no=${bean.no}&hate=${bean.like}&${requestScope.parameters}"> like </a>
-							<button type="button" id="hate" name="hate"  class="btn btn-danger btn-hate" onclick='emotion("hate");'> hate </button>
+							<button type="button" id="hate" name="hate"  class="btn btn-danger btn-hate" onclick='emotion("hate");'> ${bean.hate}
+								<i class="fa fa-thumbs-o-down"></i>
+							 </button>
                   </td>
 		                  
 				                  <td>
@@ -157,12 +156,12 @@ int rightButton = 2;
             </div>
             	<br><br>
             		<div align="center" class="commentBox">
-               		<textarea id="cmt" name="cmt" placeholder="소중한 댓글을 남겨 주세요!"></textarea>>
-               	</div>
+               		<textarea id="cmt" name="cmt" placeholder="소중한 댓글을 남겨 주세요!"></textarea>
                		
-               	<div class="commnet-button">
+               		<div class="commnet-button">
                			<button id="cmt-btn">댓글등록</button>
-            		</div>
+            			</div>
+               	</div>
             		
 	            		<input type="hidden" name="command" value="coDetailView">
 	            		<input type="hidden" name="user_no" value="${sessionScope.loginfo.no}">

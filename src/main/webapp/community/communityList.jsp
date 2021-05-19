@@ -36,8 +36,6 @@
 			location.href='<%=FormNo%>coDetail';
 		}
 		
-		
-		
 		$(document).ready(function() {
 			
 		});
@@ -64,27 +62,6 @@
 			</div>
 			<div class="panel-body">
 				<table class="table table-hover">
-					<thead>
-						<tr>
-							<td>
-								<button class="btn btn-success">
-									최신순
-								</button>
-							</td>
-							
-							<td>
-								<button class="btn btn-success">
-									댓글순
-								</button>
-							</td>
-							
-							<td>
-								<button class="btn btn-success">
-									조회순
-								</button>
-							</td>
-						</tr>
-					</thead>
 					
 					<thead>
 						<tr>

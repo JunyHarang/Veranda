@@ -27,10 +27,17 @@ public class CommunityDetailViewController extends SuperClass{
 		
 		CommunityCommentDao cdao = new CommunityCommentDao();
 		
+		Member loginfo = (Member)super.session.getAttribute("loginfo");  // 로그인 한 사란의 객체 정보를 담을 변수 선언
+		
+		// 로그인 한 사람과 게시물 작성자가 다르거나, 작성자 정보가 없는 경우 필터링
+				if (loginfo.getNo() != bean.getUser_no()   || loginfo.getUser_id() == null) {
+					dao.UpdateReadhit(no); // 조회수 1증가 시키기
+					bean.setReadhit( bean.getReadhit() + 1 );
+				}
 		
 	//	List<Member> lists = dao.searchmember();
 		
-//		Member loginfo = (Member)super.session.getAttribute("loginfo");  // 로그인 한 사란의 객체 정보를 담을 변수 선언
+//		
 		
 //		if ( loginfo.getNo() != ( bean.getUser_no() ) || bean.getUser_no() == 0) {// 작성자 이 외에 사람이 게시글을 보았을 때, 조회수가 증가되기 위한 조건문
 //			

@@ -11,8 +11,8 @@
 	
 	<script type="text/javascript">
 	
-		function meClose(overlapid) {
-			opener.joinform.overlapid.value = overlapid;
+		function meClose(isCheck) {
+			opener.joinform.isCheck.value = isCheck;
 			self.close();
 		}
 		
@@ -26,7 +26,7 @@
 	
 		<p align="center">${message}</p>
 			<div class="row" align="center">
-				<button class="btn btn-primary" type="button" onclick="meClose('${overlapid}');">
+				<button class="btn btn-primary" type="button" onclick="meClose('${isCheck}');">
 					<p>닫기</p>
 				</button>
 		</div>

@@ -31,15 +31,6 @@
 				return false;
 			} // 아이디 길이 확인 if문 끝
 			
-			var id = document.joinform.id.value;
-			var isCheck = document.joinform.overlapid;
-			
-			if (!isCheck == 'ture') { /* 중복 체크 확인 */
-				alert('중복 확인 눌러 주세요!');
-				document.joinform.id.focus();
-				return false;
-			} // 중복 체크 if문 끝
-			
 			var url = '<%=FormNo%>meIdcheck&id='+id;
 			window.open(url,'mywin','height=150,width=300');
 			
@@ -47,24 +38,17 @@
 		} // 아이디 유효성 검사 끝
 		
 		function isCheckFalse() { /* 아이디 유효성 검사 실패 시 */
-			document.joinform.overlapid.valuse = false;
+			document.joinform.isCheck.valuse = false;
 		}
 		
-		function overlapid() {
-			
-			var id = document.joinform.id.value;
-			var isCheck = document.joinform.overlapid;
-			
-			if (!isCheck == 'ture') { /* 중복 체크 확인 */
-				alert('중복 확인 눌러 주세요!');
-				document.joinform.overlapid.focus();
+		function checkForm() {
+			var isCheck = document.joinform.isCheck.value;
+			if (isCheck == 'false') {
+				alert('아이디 중복 체크를 해 주세요!');
 				return false;
-			} // 중복 체크 if문 끝
-			
-			var url = '<%=FormNo%>meIdcheck&id='+id;
-			window.open(url,'mywin','height=150,width=300');
+			}
 		}
-		
+
 		function pwdCheck() { /* 패스워드 유효성 검사 */
 			
 			var id = document.joinform.id.value;
@@ -73,15 +57,20 @@
 			
 			var checkpwd = document.joinform.checkpwd.value;
 			
+			var chk_num = pwd.search(/[0-9]/g);		// 숫자 비교 시 사용될 변수
+			   
+		    var chk_eng = pwd.search(/[a-z]/ig);	// 영어(소문자) 비교 시 사용될 변수
+			
+			var pwd = document.joinform.pwd.value;
+		    
+			var overlappwd = document.joinform.overlappwd;
+			
 			    if(!/^[a-zA-Z0-9]{10,20}$/.test(pwd)){
 			        alert("비밀번호는 숫자와 영문자 조합으로 10~20자리를 사용해야 합니다.");
 			        document.joinform.pwd.focus();
 			        return false;
-			    
-			    var chk_num = pwd.search(/[0-9]/g);		// 숫자 비교 시 사용될 변수
+			    }
 			   
-			    var chk_eng = pwd.search(/[a-z]/ig);	// 영어(소문자) 비교 시 사용될 변수
-			    
 			    if(chk_num < 0 || chk_eng < 0){ /* 영소문자 + 숫자 조합 여부 검사 */
 			        alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
 			        document.joinform.pwd.focus();
@@ -93,14 +82,12 @@
 			        document.joinform.pwd.focus();
 			        return false;
 			    }
+			    
 			    if(pwd.search(id) > -1){
 			        alert("ID가 포함된 비밀번호는 사용하실 수 없습니다.");
 			        document.joinform.pwd.focus();
 			        return false;
 			    }
-			    return true;
-			
-			}
 			
 			if (pwd.length < 10 || pwd.length > 20) { /* 패스워드 길이 검사 */
 				
@@ -116,9 +103,9 @@
 				
 				if (document.getElementById('pwd').value==document.getElementById('checkpwd').value) { /* 패스워드가 같은지 검사 */
 				
-				document.getElementById('same').innerHTML='정상입니다!';
+					document.getElementById('same').innerHTML='정상입니다!';
 				
-				document.getElementById('same').style.color='blue';
+					document.getElementById('same').style.color='blue';
 				
 				} else {
 					document.getElementById('same').innerHTML='다시 한번 확인 부탁 드립니다!';
@@ -130,18 +117,12 @@
 				
 			} // 패스워드 공백 검사 if문 끝
 			
-			var pwd = document.joinform.pwd.value;
-			var overlappwd = document.joinform.overlappwd;
+			return true;
 			
 		} // 패스워드 유효성 검사 끝
 		
 		function isCheckFalse() { /* 비밀번호 유효성 검사 실패 시 */
-			document.joinform.overlappwd.valuse = false;
-		}
-		
-		function overlappwd() {
-			
-			
+			document.joinform.isCheck.valuse = false;
 		}
 		
 		function nickCheck() {
@@ -153,16 +134,19 @@
 				return false;
 			} // 닉네임 길이 확인 if문 끝
 			
-			var url = '<%=FormNo%>meNickcheck&nickname='+nickname;
-			window.open(url,'mywin','height=150,width=300');
-			
 			if (document.joinform.nickname.value == 'false') { /* 중복 체크 확인 */
 				alert('중복 확인을 눌러 주세요!');
 				document.joinform.nickname.focus();
 				return false;
 			} // 중복 체크 if문 끝
 			
-		}
+			function nickisCheckFalse() { /* 닉네임 유효성 검사 실패 시 */
+				document.joinform.nickisCheck.valuse = false;
+			}
+			
+			var url = '<%=FormNo%>meNickcheck&nickname='+nickname;
+			window.open(url,'mywin','height=150,width=300');
+		} // nickname 중복 체크 끝
 		
 		function sexcheck() {
 			var idnumber = document.joinform.idnumber.value.substring(0,1);
@@ -172,7 +156,7 @@
 			} else {
 				joinform.sex[1].click();
 			}
-		}
+		} // 성별 유효성 검사 끝
 		
 		function emailcheck() {
 			
@@ -185,12 +169,18 @@
 				document.joinform.email.focus();
 				return false;
 			} // 중복 체크 if문 끝
+		}
 		
 				
-				function service() {
-					alert('죄송합니다. 서비스 준비 중 입니다.');
-					return false;
-				}
+		function service() {
+			alert('죄송합니다. 서비스 준비 중 입니다.');
+			return false;
+		}
+			
+		$(document).ready(function(){
+			$('select').niceSelect();
+		});
+		
 				
 	</script>
 	
@@ -296,22 +286,6 @@
 
 </head>
 <body>
-<%--
- <%
-    String clientId = "6Io2ZVIAyg70911nLrPRJ";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://10.77.77.6/veranda/veranda?command=main", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    apiURL += "&client_id=" + clientId;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&state=" + state;
-    session.setAttribute("state", state);
- %>
- 
-  <a href="<%=apiURL%>">
-  <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
- --%>
  
 <!-- CSS Form 받아오기 -->
 <link rel="stylesheet" href="css/joinForm.css">
@@ -333,8 +307,8 @@
 			<i class="fab fa-facebook-f"></i>   페이스북 인증하기</a>
 		
 		<a href="" class="btn btn-block btn-google" onclick="service();"> 
-			<i class="fab fa-google">
-		</i>   구글 인증하기</a>
+			<i class="fab fa-google"></i>		구글 인증하기</a>
+		   
 	</p>
 	
 	<p class="divider-text">
@@ -353,13 +327,13 @@
 		    </span>
 		 
 		 </div>
+		 
+		  <input type="hidden" name="command" value="meInsert">
+        <input type="hidden" name="isCheck" value="false">
         
-        <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text" pattern="[A-Za-z0-9]+">
+        <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text" pattern="[A-Za-z0-9]+" data-toggle="tooltip" onkeyup="isCheckFalse();" value="${bean.user_id}" title="아이디는 5글자 이상 10글짜 이하로 입력 해 주세요!">
         
-        <input type="hidden" name="command" value="meInsert">
-        <input type="hidden" name="overlapid" value="false">
-        
-    	<input type="button" value="중복 확인" class="btn btn-idcheck" onclick="idCheck();">
+    	<input type="button" value="중복 확인" class="btn btn-info" onclick="idCheck();">
     
     </div> 
     
@@ -440,7 +414,7 @@
 		 
 		 </div>
         
-        <input name="birth" class="form-control" data-toggle="toggle" title="생년월일을 선택 해 주세요!" type="date">
+        <input id="birth" name="birth" class="form-control" data-toggle="toggle" title="생년월일을 선택 해 주세요!" type="date">
     	&nbsp;&nbsp;
     	<input type="number" name="idnumber" class="form-control" placeholder="주민번호 뒤 1자리" data-toggle="toggle" title="주민번호 뒤 한자리를 입력 해 주세요! 1~4까지만 입력 해 주세요!" size="1" min="1" max="4" onclick="sexcheck();">
     </div> 
@@ -490,47 +464,50 @@
 		 
 		 </div>
         
-        <input type="text" id="sample2_postcode" placeholder="우편번호" readonly="readonly">
+        <input type="text" id="sample2_postcode" name="sample2_postcode" placeholder="우편번호" readonly="readonly">
 			<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample2_address" placeholder="주소" readonly="readonly"><br>
-		<input type="text" id="sample2_detailAddress" placeholder="상세주소">
-		<input type="text" id="sample2_extraAddress" placeholder="참고항목" readonly="readonly">
+		<input type="text" id="sample2_address" name="sample2_address" placeholder="주소" readonly="readonly"><br>
+		<input type="text" id="sample2_detailAddress" name="sample2_detailAddress" placeholder="상세주소">
+		<input type="text" id="sample2_extraAddress" name="sample2_extraAddress" placeholder="참고항목" readonly="readonly">
 		 	
 		 </div>
     
     <%-- 연락처 입력란 --%>
     <div class="form-group input-group">
-    	<div class="input-group-prepend">
+   		 
+    	 <div class="input-group-prepend">
 		    
 		    <span class="input-group-text"> 
 		    	<i class="fa fa-phone"></i> 
-		    </span>
+		 	</span>
 		</div>
-		<select class="custom-select" style="max-width: 120px;">
-		    <option selected="-">-- 지역 번호를 선택하여 주세요! --</option>
-		    <option value="1">010</option>
-		    <option value="2">02</option>
-		    <option value="3">032</option>
-		    <option value="4">051</option>
-		    <option value="5">053</option>
-		    <option value="6">062</option>
-		    <option value="7">042</option>
-		    <option value="8">052</option>
-		    <option value="9">044</option>
-		    <option value="10">031</option>
-		    <option value="11">033</option>
-		    <option value="12">043</option>
-		    <option value="13">041</option>
-		    <option value="14">063</option>
-		    <option value="15">061</option>
-		    <option value="16">054</option>
-		    <option value="17">055</option>
-		    <option value="18">064</option>
+		
+	<%-- 	<select id="phone" name="phone" class="form-control" style="max-width: 120px;">
+		    <option value="-">-- 지역 번호를 선택하여 주세요! --</option>
+		    <option value="010">010</option>
+		    <option value="02">02</option>
+		    <option value="032">032</option>
+		    <option value="051">051</option>
+		    <option value="053">053</option>
+		    <option value="062">062</option>
+		    <option value="042">042</option>
+		    <option value="052">052</option>
+		    <option value="044">044</option>
+		    <option value="031">031</option>
+		    <option value="033">033</option>
+		    <option value="043">043</option>
+		    <option value="041">041</option>
+		    <option value="063">063</option>
+		    <option value="061">061</option>
+		    <option value="054">054</option>
+		    <option value="055">055</option>
+		    <option value="064">064</option>
 		    
 		</select>
-		
-    	<input name="phone" class="form-control" min="111" max="9999" type="number">
-    	<input name="phone1" class="form-control" min="1111" max="9999" type="number">
+		--%>
+		<input id="phone" name="phone" class="form-contorl" min="011" max="099" type="text">
+    	<input id="phone1" name="phone1" class="form-control" min="111" max="9999" type="number">
+    	<input id="phone2" name="phone2" class="form-control" min="1111" max="9999" type="number">
     </div> 
     
     <%-- 회원가입 버튼 --%>                                      
