@@ -122,7 +122,7 @@ int rightButton = 2;
 			<div class="checkout__form">
 				<form name="insertform" action="<%=FormYes%>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="coUpdate"> 
-					<input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+					<input type="hidden" name="writer" value="${sessionScope.loginfo.no}">
 					<input type="hidden" name="com_no" value="${bean.no}">
 					<div class="row">
 						<div class="col-lg-12 col-md-6">
@@ -155,10 +155,10 @@ int rightButton = 2;
 										<div>
 											<select id="category" name="category" class="form">
 												<option value="-" selected="selected">카테고리 선택
-												<option value="free">자유게시판
-												<option value="info">정보공유
-												<option value="review">구매후기
-												<option value="myveranda">베란다 뽐내기
+												<option value="자유게시판">자유게시판
+												<option value="정보공유">정보공유
+												<option value="구매후기">구매후기
+												<option value="베란다 뽐내기">베란다 뽐내기
 											</select>
 										</div>
 									</div>

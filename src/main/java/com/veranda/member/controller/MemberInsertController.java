@@ -44,10 +44,16 @@ public class MemberInsertController extends SuperClass{
 		bean.setUser_birth(request.getParameter("birth"));
 		bean.setUser_gender(request.getParameter("sex"));
 		bean.setUser_remark(request.getParameter("remark"));
-		bean.setUser_postcode(request.getParameter("sample2_postcode"));
 		bean.setUser_address(request.getParameter("sample2_address"));
-		bean.setUser_address1(request.getParameter("sample2_address1"));
-		bean.setUser_address2(request.getParameter("sample2_detailaddress"));
+		bean.setUser_address1(request.getParameter("sample2_extraAddress"));
+		bean.setUser_address2(request.getParameter("ample2_detailAddress"));
+		
+		
+		if (request.getParameter("sample2_postcode") == null || request.getParameter("sample2_postcode").equals("")) {
+			bean.setUser_postcode(0);
+		} else {
+			bean.setUser_postcode(Integer.parseInt(request.getParameter("sample2_postcode")));
+		}
 		
 		System.out.println("postcode 유효성 검사 진입");
 		

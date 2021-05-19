@@ -1,6 +1,7 @@
 package com.veranda.community.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.veranda.common.controller.SuperClass;
 import com.veranda.community.dao.CommunityDao;
 import com.veranda.community.vo.Community;
+import com.veranda.member.vo.Member;
 
 public class CommunityUpdateController extends SuperClass{
 	
@@ -36,6 +38,7 @@ public class CommunityUpdateController extends SuperClass{
 		bean = dao.SelectDataByPk(no);
 		
 		request.setAttribute("bean", bean);
+		
 		
 		String gotopage = "community/communityUpdate.jsp";
 		super.GotoPage(gotopage);

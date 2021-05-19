@@ -181,7 +181,70 @@ public class CommunityDao extends SuperDao{
 	
 	
 	public int DeleteData( int no ){
-		return 0;
+		
+		String sql = " delete from communities where com_no = ? ";
+		
+		PreparedStatement pstmt = null;
+		
+		int cnt = - 1;
+		
+		System.out.println("CommunityDao의 DeleteData()에 try 문에 진입 합니다!");
+		
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			
+			conn.setAutoCommit(false);
+			
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			System.out.println("CommunityDao의 DeleteData()에 치환 작업이 완료 되었습니다!");
+			
+			cnt = pstmt.executeUpdate();
+			
+			System.out.println(cnt + " 이 씨부럴!");
+			
+			conn.commit();
+			
+			System.out.println("CommunityDao의 DeleteData()에 DB Commit이 완료 되었습니다!");
+		
+		} catch (SQLException e) {
+			System.out.println("CommunityDao의 DeleteData()에 문제가 발생하여 Catch문에 진입 하였습니다! ");
+			
+			SQLException err = (SQLException)e;
+			
+			cnt = - err.getErrorCode();
+			
+			e.printStackTrace();
+			
+			try {
+				conn.rollback();
+				
+				System.out.println("CommunityDao의 DeleteData()에 문제가 발생하여 RollBack 되었습니다!");
+		
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		} finally {
+			
+			try {
+				if ( pstmt != null ) {
+					pstmt.close();
+				}
+				
+				super.closeConnection();
+			
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return cnt;
 	}
 	
 	
@@ -361,10 +424,114 @@ public class CommunityDao extends SuperDao{
 		return 0;
 	}
 	
-	public int UpdateEmotion(int no) {
-		return 0;
+	public int UpdateLike( Community bean ) {
+		
+		System.out.println("UpdateLike Dao 진입");
+		
+		String sql = " update communities set com_like = ? where com_no = ? ";
+		
+		PreparedStatement pstmt = null;
+		
+		int cnt = - 1;
+		
+		try {
+			
+			if ( conn == null ) {
+				super.conn = super.getConnection();
+			}
+			
+			conn.setAutoCommit(false);
+			
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bean.getLike());
+			pstmt.setInt(2, bean.getNo());
+			
+			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
+			System.out.println("commit 완료");
+			
+		} catch (Exception e) {
+
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		} finally{
+			
+			try {
+				if( pstmt != null ){
+					pstmt.close(); 
+				}
+				super.closeConnection();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return cnt;
 	}
 
+public int UpdateHate( Community bean ) {
+		
+		String sql = " update communities set com_hate = ? where com_no = ? ";
+		
+		PreparedStatement pstmt = null;
+		
+		int cnt = - 1;
+		
+		try {
+			
+			if ( conn == null ) {
+				super.conn = super.getConnection();
+			}
+			
+			conn.setAutoCommit(false);
+			
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bean.getHate());
+			pstmt.setInt(2, bean.getNo());
+
+			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
+			
+		} catch (Exception e) {
+
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		} finally{
+			
+			try {
+				if( pstmt != null ){
+					pstmt.close(); 
+				}
+				super.closeConnection();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return cnt;
+	}
 	public int SelectTotalCount(String mode, String keyword) {
 		
 		System.out.println("CommunityDao의 SelectTotalCount()가 시작 되었습니다.");
@@ -420,7 +587,7 @@ public class CommunityDao extends SuperDao{
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;				
 
-		String sql = " select user_no from members " ;
+		String sql = " select user_id from members " ;
 		
 		Member bean = null;
 		
@@ -439,7 +606,7 @@ public class CommunityDao extends SuperDao{
 				
 				bean = new Member();
 				
-				bean.setNo(rs.getInt("user_no"));
+				bean.setUser_id(rs.getString("user_id"));
 				
 				lists.add(bean);
 			}

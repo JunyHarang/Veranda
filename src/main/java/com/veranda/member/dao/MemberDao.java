@@ -2,6 +2,7 @@ package com.veranda.member.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.veranda.common.dao.SuperDao;
@@ -12,7 +13,51 @@ public class MemberDao extends SuperDao {
    
    
    public int InsertData(Member bean) {
-      return 0;
+	   String sql = " insert into members(user_no, user_id, user_name, user_pwd, user_gender, user_birth, user_post, user_address1, user_address2, user_email, user_nickname, user_phone) " ; 
+		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " ;
+
+		PreparedStatement pstmt = null ;
+		int cnt = -1 ;
+		try {
+			if( conn == null ){ super.conn = super.getConnection() ; }
+			conn.setAutoCommit( false );
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setInt(1, bean.getNo());
+			pstmt.setString(2, bean.getUser_id());
+			pstmt.setString(3, bean.getUser_name());
+			pstmt.setString(4, bean.getUser_pwd());
+			pstmt.setString(5, bean.getUser_gender());
+			pstmt.setString(6, bean.getUser_birth());
+			pstmt.setInt		 (7, bean.getUser_postcode());
+			pstmt.setString(8, bean.getUser_address());
+			pstmt.setString(9, bean.getUser_address1());
+			pstmt.setString(10, bean.getUser_address2());
+			pstmt.setString(11, bean.getUser_email());
+			pstmt.setString(12, bean.getUser_nickname());
+			pstmt.setString(13, bean.getUser_phone());
+			
+			cnt = pstmt.executeUpdate() ; 
+			conn.commit(); 
+			
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
    }
 
    public int UpdateData(Member bean) {
