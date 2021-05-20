@@ -1,7 +1,6 @@
 package com.veranda.community.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.veranda.common.controller.SuperClass;
 import com.veranda.community.dao.CommunityDao;
 import com.veranda.community.vo.Community;
+import com.veranda.communitycomment.controller.CommunityCommentListController;
 import com.veranda.communitycomment.dao.CommunityCommentDao;
-import com.veranda.communitycomment.vo.CommunityComment;
 import com.veranda.member.vo.Member;
 
 public class CommunityDetailViewController extends SuperClass{
@@ -25,7 +24,9 @@ public class CommunityDetailViewController extends SuperClass{
 		
 		Community bean = dao.SelectDataByPk(no);
 		
-		CommunityCommentDao cdao = new CommunityCommentDao();
+		String writer = dao.SelectWriter(no);
+		
+		new CommunityCommentListController().doGet(request, response);
 		
 		Member loginfo = (Member)super.session.getAttribute("loginfo");  // 로그인 한 사란의 객체 정보를 담을 변수 선언
 		

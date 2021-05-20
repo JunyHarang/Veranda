@@ -677,6 +677,50 @@ public int UpdateHate( Community bean ) {
 		} 		
 		return lists  ; 
 	}
+
+	public String SelectWriter(int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = " select user_nickname ";
+		sql += " from members m inner join communities c ";
+		sql += " on m.user_no = c.user_no ";
+		sql += " where c.com_no = ? ";
+
+		String writer = null;
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				writer = rs.getString("user_nickname");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return writer;
+	}
+	
 	
 }
 

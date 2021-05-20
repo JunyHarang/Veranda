@@ -20,6 +20,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>베란다에서 온 파프리카에 가입하기</title>
+<style type="text/css">
+</style>
 	<script type="text/javascript">
 		
 		function idCheck() { /* 아이디 유효성 검사 */
@@ -36,6 +38,10 @@
 			
 			
 		} // 아이디 유효성 검사 끝
+		
+		function handleOnInput(e) { /* 아이디 입력란에 영(대,소)숫자만 입력하게 설정 */
+			e.value = e.value.replace(/[^A-Za-z0-9]/ig, '')
+		}
 		
 		function isCheckFalse() { /* 아이디 유효성 검사 실패 시 */
 			document.joinform.isCheck.valuse = false;
@@ -121,6 +127,14 @@
 			
 		} // 패스워드 유효성 검사 끝
 		
+		function handleOnInputPwd(e) { /* 패스워드 입력란에 영(대,소)숫자, 특문(!, @, #, $, %)만 입력하게 설정 */
+			e.value = e.value.replace(/[^A-Za-z0-9!@#$%]/ig, '')
+		}
+		
+		function handleOnInputPwdCheck(e) { /* 패스워드 확인 입력란에 영(대,소)숫자, 특문(!, @, #, $, %)만 입력하게 설정 */
+			e.value = e.value.replace(/[^A-Za-z0-9!@#$%]/ig, '')
+		}
+		
 		function isCheckFalse() { /* 비밀번호 유효성 검사 실패 시 */
 			document.joinform.isCheck.valuse = false;
 		}
@@ -177,9 +191,9 @@
 			return false;
 		}
 			
-		$(document).ready(function(){
+		/* $(document).ready(function(){
 			$('select').niceSelect();
-		});
+		}); */
 		
 				
 	</script>
@@ -331,7 +345,7 @@
 		  <input type="hidden" name="command" value="meInsert">
         <input type="hidden" name="isCheck" value="false">
         
-        <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text" pattern="[A-Za-z0-9]+" data-toggle="tooltip" onkeyup="isCheckFalse();" value="${bean.user_id}" title="아이디는 5글자 이상 10글짜 이하로 입력 해 주세요!">
+        <input name="id" class="form-control" placeholder="아이디를 입력 해 주세요!" type="text" oninput="handleOnInput(this)" pattern="[A-Za-z0-9]+" data-toggle="tooltip" onkeyup="isCheckFalse();" value="${bean.user_id}" title="아이디는 5글자 이상 10글짜 이하로 입력 해 주세요!">
         
     	<input type="button" value="중복 확인" class="btn btn-info" onclick="idCheck();">
     
@@ -348,7 +362,7 @@
 		 
 		 </div>
         
-        <input id="pwd" name="pwd" class="form-control" placeholder="비밀번호를 입력 해 주세요!" type="password" onchange="pwdCheck();">
+        <input id="pwd" name="pwd" class="form-control" placeholder="비밀번호를 입력 해 주세요!" type="password" oninput="handleOnInputPwd(this)" onchange="pwdCheck();">
         &nbsp;&nbsp;
         <span id="same"></span>
         <br>
@@ -364,7 +378,7 @@
 		 
 		 </div>
         
-        <input id="checkpwd" name="checkpwd" class="form-control" placeholder="비밀번호를 한번 더 입력 해 주세요!" type="password" onchange="pwdCheck();">
+        <input id="checkpwd" name="checkpwd" class="form-control" placeholder="비밀번호를 한번 더 입력 해 주세요!" type="password" oninput="handleOnInputPwdCheck(this)" onchange="pwdCheck();">
         
     </div>
     
@@ -480,10 +494,8 @@
 		    <span class="input-group-text"> 
 		    	<i class="fa fa-phone"></i> 
 		 	</span>
-		</div>
-		
-	<%-- 	<select id="phone" name="phone" class="form-control" style="max-width: 120px;">
-		    <option value="-">-- 지역 번호를 선택하여 주세요! --</option>
+		 <select id="phone" name="phone" class="form-select">
+		    <option value="-">-- 지역 번호--</option>
 		    <option value="010">010</option>
 		    <option value="02">02</option>
 		    <option value="032">032</option>
@@ -502,14 +514,13 @@
 		    <option value="054">054</option>
 		    <option value="055">055</option>
 		    <option value="064">064</option>
-		    
 		</select>
-		--%>
-		<input id="phone" name="phone" class="form-contorl" min="011" max="099" type="text">
+		
+	<%--	<input id="phone" name="phone" class="form-contorl" min="011" max="099" type="text"> --%>
     	<input id="phone1" name="phone1" class="form-control" min="111" max="9999" type="number">
     	<input id="phone2" name="phone2" class="form-control" min="1111" max="9999" type="number">
     </div> 
-    
+    </div> 
     <%-- 회원가입 버튼 --%>                                      
     <div class="form-group">
         <button type="submit" class="btn btn-warning btn-block" onclick="return overlapid();"> 회원가입  </button>

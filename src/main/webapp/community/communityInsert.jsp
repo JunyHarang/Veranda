@@ -116,9 +116,9 @@ function checkForm() {
 			<div class="checkout__form">
 				<form name="insertform" action="<%=FormYes%>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="coInsert"> 
-					<input type="text" name="writer" readonly="readonly" value="${sessionScope.loginfo.user_id}">
-					<input type="text" name="user_no" readonly="readonly" value="${sessionScope.loginfo.no}">
-					<input type="text" name="comno" value="${bean.no}">
+					<input type="hidden" name="writer" readonly="readonly" value="${sessionScope.loginfo.user_id}">
+					<input type="hidden" name="user_no" readonly="readonly" value="${sessionScope.loginfo.no}">
+					<input type="hidden" name="comno" value="${bean.no}">
 					
 					<div class="row">
 						<div class="col-lg-12 col-md-6">
@@ -199,7 +199,7 @@ function checkForm() {
 								
 								<input type="file" class="insertImg" name="image10" id="image10" value="${bean.image10}" accept="image/jpg, image/jpeg, image/png">
 							
-							<br>
+							<br><br>
 							
 							<button type="submit" class="site-btn" onclick="return checkForm();">
 								등록

@@ -39,7 +39,6 @@ public class CommunityUpdateController extends SuperClass{
 		
 		request.setAttribute("bean", bean);
 		
-		
 		String gotopage = "community/communityUpdate.jsp";
 		super.GotoPage(gotopage);
 		
@@ -80,7 +79,6 @@ public class CommunityUpdateController extends SuperClass{
 	if (multi.getParameter("com_no") != null && multi.getParameter("com_no").equals("") == false) {
 		bean.setNo(Integer.parseInt(multi.getParameter("com_no")));
 	}
-	
 	
 	System.out.println("CommunityUpdateController에 dopost()에 bean에는 다음과 같은 내용이 담겼습니다." + bean.toString());
 	

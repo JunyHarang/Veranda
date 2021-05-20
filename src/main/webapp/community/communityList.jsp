@@ -66,6 +66,7 @@
 					<thead>
 						<tr>
 							<th align="center">글번호</th>
+							<th align="center">작성자</th>	
 							<th align="center">카테고리</th>
 							<th colspan="2" align="center">글 제목</th>
 							<th align="center">날짜</th>
@@ -83,6 +84,7 @@
 									</td>
 									<td>${bean.date}</td>
 									<td>${bean.readhit}</td>
+									
 							</tr>
 						</c:forEach>
 						
