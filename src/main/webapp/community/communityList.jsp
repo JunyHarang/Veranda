@@ -36,8 +36,6 @@
 			location.href='<%=FormNo%>coDetail';
 		}
 		
-		
-		
 		$(document).ready(function() {
 			
 		});
@@ -64,31 +62,11 @@
 			</div>
 			<div class="panel-body">
 				<table class="table table-hover">
-					<thead>
-						<tr>
-							<td>
-								<button class="btn btn-success">
-									최신순
-								</button>
-							</td>
-							
-							<td>
-								<button class="btn btn-success">
-									댓글순
-								</button>
-							</td>
-							
-							<td>
-								<button class="btn btn-success">
-									조회순
-								</button>
-							</td>
-						</tr>
-					</thead>
 					
 					<thead>
 						<tr>
 							<th align="center">글번호</th>
+							<th align="center">작성자</th>	
 							<th align="center">카테고리</th>
 							<th colspan="2" align="center">글 제목</th>
 							<th align="center">날짜</th>
@@ -106,6 +84,7 @@
 									</td>
 									<td>${bean.date}</td>
 									<td>${bean.readhit}</td>
+									
 							</tr>
 						</c:forEach>
 						

@@ -52,6 +52,21 @@ int rightButton = 2;
 			
 		}
 		
+		function checkForm() {
+
+			/* 내용 길이 체크 */
+			var content = document.insertform.content.value;
+			if (content.length < 2) {
+				alert('내용은 최소 2자리 이상이어야 합니다.');
+				document.insertform.content.focus();
+				return false;
+			} else if (content.length > 300) {
+				alert('내용은 최대 300자리 이하이어야 합니다.');
+				document.insertform.content.focus();
+				return false;
+			}
+		}
+		
 		$(document).ready(function() {
 			
 		});
@@ -109,30 +124,44 @@ int rightButton = 2;
                   <th scope="row">${bean.no}</th>
                   <td colspan="2">${bean.title}</td>
                   <td>${bean.date}</td>
-                  <td>
+                  <td>${bean.category}</td>
+                  <td>${writer}</td>
+                  <c:if test="${bean.user_no == sessionScope.loginfo.no}">
+							<th><a href="<%=FormNo%>myPage">${writer}</a></th>
+						</c:if>
+						
+						<c:if test="${bean.user_no != sessionScope.loginfo.no}">
+							<th><a href="<%=FormNo%>neighborPage&writer=${writer}">${writer}</a></th>
+						</c:if>
+						
+						<th>${bean.date}</th>
+						
+						<td>
                   
-                  			<a href="<%=FormNo%>coLike&no=${bean.no}&like=${bean.like}&${requestScope.parameters}"> like </a>
-                  			
-                  		<button type="button" id="like" name="like" class="btn btn-primary btn-like" onclick='emotion("like");'> like </button>
+                  		<button type="button" id="like" name="like" class="btn btn-primary btn-like" onclick='emotion("like");'> ${bean.like}
+                  			<i class="fa fa-thumbs-o-up"></i>
+                  		</button>
                   </td>
                   
                   <td>
-                  			
-                  				
-                  				<a href="<%=FormNo%>coHate&no=${bean.no}&hate=${bean.like}&${requestScope.parameters}"> like </a>
-							<button type="button" id="hate" name="hate"  class="btn btn-danger btn-hate" onclick='emotion("hate");'> hate </button>
+							<button type="button" id="hate" name="hate"  class="btn btn-danger btn-hate" onclick='emotion("hate");'> ${bean.hate}
+								<i class="fa fa-thumbs-o-down"></i>
+							 </button>
                   </td>
+		               <c:forEach var="bean" items="${requestScope.lists}"> 
+		           	   
+		           	     <c:if test="${sessionScope.loginfo.no == bean.user_id}"> 	
+		           	                  	     	
+				              <td>
+				                <a href="<%=FormNo%>coUpdate&no=${bean.no}&${requestScope.parameters}"> 수정 </a>
+				              </td>
 		                  
-				                  <td>
-				                     <a href="<%=FormNo%>coUpdate&no=${bean.no}&${requestScope.parameters}"> 수정 </a>
-		
-				                  </td>
-		                  
-		                  <td>
-		                     <a href="<%=FormNo%>coDelete&no=${bean.no}&${requestScope.parameters}"> 삭제 </a>
-		                     
-		                  </td>
-                  	
+		                    <td>
+		                       <a href="<%=FormNo%>coDelete&no=${bean.no}&${requestScope.parameters}"> 삭제 </a>
+   		                    </td>
+                  		</c:if> 	
+                  			
+              	   </c:forEach> 
                </tr>
             </table>
             <div class="card-body">
@@ -156,14 +185,49 @@ int rightButton = 2;
                <img class="upImg" src="upload/${bean.image10}">
             </div>
             	<br><br>
-            		<div align="center" class="commentBox">
-               		<textarea id="cmt" name="cmt" placeholder="소중한 댓글을 남겨 주세요!"></textarea>>
-               	</div>
-               		
-               	<div class="commnet-button">
-               			<button id="cmt-btn">댓글등록</button>
-            		</div>
-            		
+            	
+            	<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<c:if test="${whologin != 0}">
+							<form name="insertform" action="<%=FormYes%>" method="post">
+								<input type="hidden" name="no" value="${bean.no}">
+								<input type="hidden" name="command" value="ccoInsert">
+								<input type="hidden" name="writer" value="${sessionScope.loginfo.no}">
+								작성자 : <input type="text" disabled="disabled" value="${sessionScope.loginfo.user_nickname}">
+								<textarea name="content" rows="3" cols="110" style="resize: none;" placeholder="댓글을 입력하세요."></textarea>
+								<button type="submit" onclick="return checkForm();">
+									댓글 등록
+								</button>
+							</form>
+						</c:if>
+					</li>
+            	
+            		<c:forEach var="comment" items="${requestScope.commlists}">
+	    				<li class="list-group-item">
+	    					<c:if test="${comment.user_no == sessionScope.loginfo.no}">
+								<th>작성자 : <a href="<%=FormNo%>myPage">${comment.writer}</a></th>
+							</c:if>
+							<c:if test="${comment.user_no != sessionScope.loginfo.no}">
+								<th>작성자 : <a href="<%=FormNo%>neighborPage&writer=${comment.writer}">${comment.writer}</a></th>
+							</c:if>
+	    					- 등록일자 ${comment.date}
+	    					<c:if test="${comment.user_no == sessionScope.loginfo.no}">
+								<td>
+									<a href="<%=FormNo%>ccoUpdate&com_no=${comment.com_no}&${requestScope.parameters}">
+										수정
+									</a>
+								</td>
+								<td>
+									<a href="<%=FormNo%>ccoDelete&com_no=${comment.com_no}&no=${bean.no}">
+										삭제
+									</a>
+								</td>
+							</c:if> 
+	    					<br> 
+	    					내용 : ${comment.content}
+	    				</li>
+            		</c:forEach>
+            		</ul>
 	            		<input type="hidden" name="command" value="coDetailView">
 	            		<input type="hidden" name="user_no" value="${sessionScope.loginfo.no}">
 						<input type="hidden" id="com_no" name="com_no" value="${bean.no}">

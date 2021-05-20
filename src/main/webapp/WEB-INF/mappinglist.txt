@@ -10,10 +10,10 @@ coDelete=com.veranda.community.controller.CommunityDeleteController
 coLike=com.veranda.community.controller.CommunityLikeController
 coHate=com.veranda.community.controller.CommunityHateController
 ############### CommunityComment Section ####################
-#ccoDelete=com.veranda.communitycomment.controller.CommunityCommentDeleteController.CommunityCommentDeleteController
-#ccoInsert=com.veranda.communitycomment.controller.CommunityCommentInsertController.CommunityCommentInsertController
-#ccoList=com.veranda.communitycomment.controller.CommunityCommentListController.CommunityCommentListController
-#ccoUpdate=com.veranda.communitycomment.controller.CommunityCommentUpdateController.CommunityCommentUpdateController
+ccoDelete=com.veranda.communitycomment.controller.CommunityCommentDeleteController
+ccoInsert=com.veranda.communitycomment.controller.CommunityCommentInsertController
+#ccoList=com.veranda.communitycomment.controller.CommunityCommentListController
+ccoUpdate=com.veranda.communitycomment.controller.CommunityCommentInsertController
 ############### CommunitykeywordSection ####################
 #ckInsert=com.veranda.communitykeyword.controller.CommunityKeywordInsertController
 #ckList=com.veranda.communitykeyword.controller.CommunityKeywordListController
@@ -25,7 +25,7 @@ foApply=com.veranda.follow.controller.FollowApplyController
 #meDelete=com.veranda.member.controller.MemberDeleteController
 #meDetailView=com.veranda.member.controller.MemberDetailViewController
 meIdcheck=com.veranda.member.controller.MemberIdcheckController
-meNickcheck=com.veranda.member.controller.MemberNickcheckController
+meNickcheck=com.veranda.member.controller.MembernicknamecheckController
 meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
 meLogin=com.veranda.member.controller.MemberLoginController

@@ -421,8 +421,55 @@ public class CommunityDao extends SuperDao{
 	}
 
 	public int UpdateReadhit(int no) {
-		return 0;
-	}
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = " update communities set com_readhit = com_readhit + 1 where com_no = ? ";
+		
+		int cnt = -1;
+		
+		try {
+			if( this.conn == null ){ 
+				this.conn = this.getConnection() ; 
+			}
+			
+			conn.setAutoCommit( false );
+			
+			pstmt = this.conn.prepareStatement( sql ) ;
+			
+			pstmt.setInt(1, no);
+			
+			cnt = pstmt.executeUpdate() ;
+			
+			conn.commit(); 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			cnt = - 1 ;
+			
+			try {
+				conn.rollback();
+			
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			
+			}
+		} finally{
+			
+			try {
+				if( pstmt != null ){ 
+					pstmt.close(); 
+				}
+				
+				this.closeConnection();
+			
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		}
+		return cnt ; 
+	} //UpdateReadhit 끝
 	
 	public int UpdateLike( Community bean ) {
 		
@@ -630,6 +677,50 @@ public int UpdateHate( Community bean ) {
 		} 		
 		return lists  ; 
 	}
+
+	public String SelectWriter(int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = " select user_nickname ";
+		sql += " from members m inner join communities c ";
+		sql += " on m.user_no = c.user_no ";
+		sql += " where c.com_no = ? ";
+
+		String writer = null;
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				writer = rs.getString("user_nickname");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return writer;
+	}
+	
 	
 }
 

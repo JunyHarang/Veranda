@@ -4,6 +4,15 @@ public class CommunityComment {
 	private int no; // 커뮤니티 댓글 번호
 	private int com_no; // 커뮤니티 글 번호
 	private int user_no; // 회원 식별 번호
+	private String writer; // 커뮤니티 댓글 작성자
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
 	private String content; // 댓글 내용
 	private String date; // 댓글 등록 날짜
 	
