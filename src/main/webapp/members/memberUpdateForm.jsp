@@ -259,7 +259,7 @@
 			 </div>
 		 	
 		 				 
-			 <input type="text" class="form-control" name="address_mark" id="sample3_detailAddress" value="${user_address_mark}">
+			 <input type="text" class="form-control" name="address2" id="sample3_detailAddress" value="${loginfo.user_address2}">
 		 	
 		 </div>
     
@@ -268,7 +268,7 @@
 		</div>
     
     <%-- 연락처 입력란 --%>
-   <!--  <div class="form-group input-group">
+    <!-- <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    
 		    <span class="input-group-text"> 
@@ -300,7 +300,7 @@
 		
     	<input name="phone" class="form-control" min="111" max="9999" type="number">
     	<input name="phone1" class="form-control" min="1111" max="9999" type="number">
-    </div>  -->
+    </div> -->
     
     <%-- 회원 정보 수정 버튼 --%>                                      
     <div class="form-group">
