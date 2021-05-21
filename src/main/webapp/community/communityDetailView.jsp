@@ -148,6 +148,7 @@ int rightButton = 2;
 								<i class="fa fa-thumbs-o-down"></i>
 							 </button>
                   </td>
+                  
 		               <c:forEach var="bean" items="${requestScope.lists}"> 
 		           	   
 		           	     <c:if test="${sessionScope.loginfo.no == bean.user_id}"> 	
