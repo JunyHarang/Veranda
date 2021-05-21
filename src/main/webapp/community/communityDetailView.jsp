@@ -41,19 +41,32 @@ int rightButton = 2;
                   <td>${bean.date}</td>
                   
                   	  <c:forEach var="bean" items="${requestScope.lists}">
-                  
+                  				
+                  			<c:if test="${sessionScope.loginfo.no == bean.user_id}"> 	
+                  <td>
+							<button type="button" id="hate" name="hate"  class="btn btn-danger btn-hate" onclick='emotion("hate");'> ${bean.hate}
+								<i class="fa fa-thumbs-o-down"></i>
+							 </button>
+                  </td>
+		           	                  	     	
+				      <td>
+				          <a href="<%=FormNo%>coUpdate&no=${bean.no}&${requestScope.parameters}"> 수정 </a>
+				      </td>
+				              
+				              </c:if>
+				              
 		                  <c:if test="${sessionScope.loginfo.no == bean.no}">
 		                  
-		                  <td>
-		                     <a href="<%=FormNo%>coUpdate&no=${bean.no}&${requestScope.parameters}">
-		                        수정
-		                     </a>
-		                  </td>
-		                  <td>
-		                     <a href="">
-		                        삭제
-		                     </a>
-		                  </td>
+			                  <td>
+			                     <a href="<%=FormNo%>coUpdate&no=${bean.no}&${requestScope.parameters}">
+			                        수정
+			                     </a>
+			                  </td>
+			                  <td>
+			                     <a href="">
+			                        삭제
+			                     </a>
+			                  </td>
                   
                   			</c:if>
                   	</c:forEach>
