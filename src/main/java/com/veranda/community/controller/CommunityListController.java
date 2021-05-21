@@ -1,17 +1,18 @@
 package com.veranda.community.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.List;
 import com.veranda.common.controller.SuperClass;
 import com.veranda.common.utility.FlowParameters;
 import com.veranda.common.utility.Paging;
 import com.veranda.community.dao.CommunityDao;
 import com.veranda.community.vo.Community;
+import com.veranda.member.vo.Member;
 
 
 public class CommunityListController extends SuperClass{

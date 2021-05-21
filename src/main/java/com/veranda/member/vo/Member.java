@@ -8,13 +8,33 @@ public class Member {
 	private String user_nickname; // 회원 닉네임
 	private String user_email; // 회원 이메일
 	private String user_phone; // 회원 연락처
-	private int user_postcode; // 회원 주소
+	private String user_phone1; // 회원 연락처
+	private String user_phone2; // 회원 연락처
+	private int user_postcode; // 회원 주소 우편번호
 	private String user_address; // 회원 주소
 	private String user_address1; // 회원 주소
 	private String user_address2; // 회원 주소
 	private String user_birth; // 회원 생년월일
 	private String user_gender; // 회원 성별
 	private String user_remark; // 회원 탈퇴 시 사용될 비고란
+	
+	public String getUser_phone1() {
+		return user_phone1;
+	}
+
+	public void setUser_phone1(String user_phone1) {
+		this.user_phone1 = user_phone1;
+	}
+
+	public String getUser_phone2() {
+		return user_phone2;
+	}
+
+	public void setUser_phone2(String user_phone2) {
+		this.user_phone2 = user_phone2;
+	}
+
+
 
 	public Member() {
 		// TODO Auto-generated constructor stub
